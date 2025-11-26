@@ -22,7 +22,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/gimlet-io/capacitor
+              # repository: ghcr.io/gimlet-io/capacitor
+              repository: ghcr.io/gimlet-io/capacitor-next:agent-v2025-11.1-patch2
               tag: v0.4.8
             resources:
               requests:
