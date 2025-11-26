@@ -8,8 +8,9 @@ spec:
   interval: 1h
   path: ./kubernetes/apps/flux-system/headlamp/app
   postBuild:
-    substitute:
-      APP: headlamp
+    substituteFrom:
+      - name: cluster-secrets
+        kind: Secret
   prune: true
   sourceRef:
     kind: GitRepository
