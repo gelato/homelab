@@ -8,6 +8,7 @@ endpoint: https://192.168.108.250:6443
 additionalApiServerCertSans: &sans
   - "127.0.0.1"
   - "192.168.108.250"
+  - "192.168.108.250"
   - "k8s.skynerv.com"
   - "k8s.casa"
   - "k8s.home.arpa"
@@ -33,16 +34,17 @@ nodes:
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "00:e0:4c:01:8f:b3"
-        vlans:
-          - vlanId: 222
-            addresses:
-              - "192.168.108.149/20"
-            mtu: 1500
-            routes:
-              - network: "0.0.0.0/0"
-                gateway: "192.168.108.1"
-            vip:
-              ip: "192.168.108.250"
+        dhcp: false
+        addresses:
+          - "192.168.108.149/20"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.108.1"
+        mtu: 1500
+        vip:
+          ip: "192.168.108.250"
+    patches:
+      - "@./patches/laik/disk-mount.yaml"
   - hostname: "sart"
     ipAddress: "192.168.108.209"
     installDiskSelector:
@@ -54,20 +56,19 @@ nodes:
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "e8:ff:1e:d1:26:0f"
-        vlans:
-          - vlanId: 222
-            addresses:
-              - "192.168.108.209/20"
-            mtu: 1500
-            routes:
-              - network: "0.0.0.0/0"
-                gateway: "192.168.108.1"
-            vip:
-              ip: "192.168.108.250"
+        dhcp: false
+        addresses:
+          - "192.168.108.209/20"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.108.1"
+        mtu: 1500
+        vip:
+          ip: "192.168.108.250"
   - hostname: "eri"
     ipAddress: "192.168.108.238"
     installDiskSelector:
-      serial: "NJR368R008680P70GX"
+      serial: "MBM447165407"
     machineSpec:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/2f1c847e5457afb7846b421f696d72f212633499dfe7f16fd667081b7904cfc6
@@ -75,16 +76,15 @@ nodes:
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "e8:ff:1e:d1:24:1b"
-        vlans:
-          - vlanId: 222
-            addresses:
-              - "192.168.108.238/20"
-            mtu: 1500
-            routes:
-              - network: "0.0.0.0/0"
-                gateway: "192.168.108.1"
-            vip:
-              ip: "192.168.108.250"
+        dhcp: false
+        addresses:
+          - "192.168.108.238/20"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.108.1"
+        mtu: 1500
+        vip:
+          ip: "192.168.108.250"
   - hostname: "tau"
     ipAddress: "192.168.108.199"
     installDiskSelector:
@@ -96,14 +96,16 @@ nodes:
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "58:11:22:d1:bb:57"
-        vlans:
-          - vlanId: 222
-            addresses:
-              - "192.168.108.199/20"
-            mtu: 1500
-            routes:
-              - network: "0.0.0.0/0"
-                gateway: "192.168.108.1"
+        dhcp: false
+        addresses:
+          - "192.168.108.199/20"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.108.1"
+        mtu: 1500
+    patches:
+      - "@./patches/tau/disk-mount.yaml"
+      - "@./patches/tau/gpu-worker-patch.yaml"
   - hostname: "weilai"
     ipAddress: "192.168.108.212"
     installDiskSelector:
@@ -115,14 +117,15 @@ nodes:
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "e8:ff:1e:d0:c2:31"
-        vlans:
-          - vlanId: 222
-            addresses:
-              - "192.168.108.212/20"
-            mtu: 1500
-            routes:
-              - network: "0.0.0.0/0"
-                gateway: "192.168.108.1"
+        dhcp: false
+        addresses:
+          - "192.168.108.212/20"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.108.1"
+        mtu: 1500
+    patches:
+      - "@./patches/weilai/disk-mount.yaml"
   - hostname: "ritmhouse"
     ipAddress: "192.168.108.115"
     installDiskSelector:
@@ -134,14 +137,15 @@ nodes:
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "e8:ff:1e:d2:1b:d1"
-        vlans:
-          - vlanId: 222
-            addresses:
-              - "192.168.108.115/20"
-            mtu: 1500
-            routes:
-              - network: "0.0.0.0/0"
-                gateway: "192.168.108.1"
+        dhcp: false
+        addresses:
+          - "192.168.108.115/20"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.108.1"
+        mtu: 1500
+    patches:
+      - "@./patches/ritmhouse/disk-mount.yaml"
   - hostname: "kimi"
     ipAddress: "192.168.100.228"
     installDisk: "/dev/sda"
@@ -152,14 +156,13 @@ nodes:
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "0e:c0:00:4d:82:92"
-        vlans:
-          - vlanId: 222
-            addresses:
-              - "192.168.100.228/20"
-            mtu: 1500
-            routes:
-              - network: "0.0.0.0/0"
-                gateway: "192.168.108.1"
+        dhcp: false
+        addresses:
+          - "192.168.100.228/20"
+        routes:
+          - network: "0.0.0.0/0"
+            gateway: "192.168.108.1"
+        mtu: 1500
 
 # Global patches
 patches:
@@ -168,6 +171,7 @@ patches:
   - "@./patches/global/machine-network.yaml"
   - "@./patches/global/machine-sysctls.yaml"
   - "@./patches/global/machine-time.yaml"
+  - "@./patches/global/cluster-registries.yaml"
 
 # Controller patches
 controlPlane:
