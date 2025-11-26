@@ -89,7 +89,7 @@ tasks:
       - which makejinja
 
   encrypt-secrets:
-    internal: true
+    # internal: true
     cmds:
       - for: { var: SECRET_FILES }
         cmd: |
