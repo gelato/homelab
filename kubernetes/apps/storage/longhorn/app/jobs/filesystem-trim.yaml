@@ -3,7 +3,6 @@ apiVersion: longhorn.io/v1beta1
 kind: RecurringJob
 metadata:
   name: filesystem-trim
-  namespace: storage
 spec:
   cron: "0 */10 * * *"
   task: "filesystem-trim"

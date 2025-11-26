@@ -3,7 +3,6 @@ apiVersion: longhorn.io/v1beta1
 kind: RecurringJob
 metadata:
   name: snapshot-cleanup
-  namespace: storage
 spec:
   cron: "0 */5 * * *"
   task: "snapshot-cleanup"
@@ -18,7 +17,6 @@ apiVersion: longhorn.io/v1beta1
 kind: RecurringJob
 metadata:
   name: snapshot-delete
-  namespace: storage
 spec:
   cron: "0 */5 * * *"
   task: "snapshot-delete"
