@@ -1,0 +1,42 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: weave-gitops
+spec:
+  interval: 15m
+  chartRef:
+    kind: OCIRepository
+    name: weaveworks
+    namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    adminUser:
+      create: true
+      username: admin
+      passwordHash: ${WW_ADMIN_PASSWORD}
+    networkPolicy:
+      create: false
+    metrics:
+      enabled: true
+    rbac:
+      create: true
+      impersonationResourceNames: ["admin"]
+      additionalRules:
+        - apiGroups: ["infra.contrib.fluxcd.io"]
+          resources: ["terraforms"]
+          verbs: ["get", "list", "patch"]
+    resources:
+      requests:
+        cpu: 100m
+        memory: 500Mi
+        ephemeral-storage: 100Mi
+      limits:
+        memory: 1Gi
+        ephemeral-storage: 2Gi
