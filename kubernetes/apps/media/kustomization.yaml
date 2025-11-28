@@ -8,4 +8,4 @@ components:
 
 resources:
   - ./namespace.yaml
-  - ./eternal-storage/ks.yaml
+  - ./media-storage/ks.yaml
