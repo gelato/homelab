@@ -9,3 +9,4 @@ components:
 resources:
   - ./namespace.yaml
   - ./media-storage/ks.yaml
+  - ./qbittorrent/ks.yaml
