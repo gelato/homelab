@@ -7,6 +7,6 @@ spec:
   accessModes: ["ReadWriteOnce"]
   resources:
     requests:
-      storage: 800Gi
+      storage: 1300Gi
       #16762.01Gi
   storageClassName: longhorn-storage
