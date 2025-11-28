@@ -12,7 +12,7 @@ spec:
   backupURL: s3://mysql-main
   backupRemoteDeletePolicy: delete
   backupScheduleJobsHistoryLimit: 10
-  initBucketURL: gs://bucket_name/path/to/backup.xbackup.gz
+  initBucketURL: gs://mysql-main/main-auto-2025-11-25t00-00-00.xbackup.gz
   initBucketSecretName: mysql-main-backup
   volumeSpec:
     persistentVolumeClaim:
