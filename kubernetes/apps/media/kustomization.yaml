@@ -15,3 +15,4 @@ resources:
   - ./jackett/ks.yaml
   - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
+  - ./sonarr/ks.yaml
