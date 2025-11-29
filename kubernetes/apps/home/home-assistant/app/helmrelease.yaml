@@ -77,7 +77,7 @@ spec:
           io.cilium/lb-ipam-ips: 192.168.108.44
         ports:
           http:
-            port: &httpPort 8123
+            port: 8123
           mdns-tcp:
             enabled: true
             port: 5353
@@ -101,8 +101,8 @@ spec:
                   type: Exact
                   value: /api/webhook/update_config
             backendRefs:
-              - identifier: home-assistant
-                port: *httpPort
+              - identifier: main
+                port: http
       local:
         hostnames:
           - hass.${SECRET_DOMAIN}
@@ -111,8 +111,8 @@ spec:
             namespace: network
         rules:
           - backendRefs:
-              - identifier: home-assistant
-                port: *httpPort
+              - identifier: main
+                port: http
       main:
         annotations:
           external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
@@ -124,8 +124,8 @@ spec:
             sectionName: https
         rules:
           - backendRefs:
-              - identifier: home-assistant
-                port: *httpPort
+              - identifier: main
+                port: http
 
     persistence:
       config:
