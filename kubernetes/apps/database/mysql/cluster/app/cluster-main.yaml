@@ -12,7 +12,7 @@ spec:
   backupURL: s3://mysql-main
   backupRemoteDeletePolicy: delete
   backupScheduleJobsHistoryLimit: 10
-  initBucketURL: gs://s3.casa/mysql-main/main-auto-2025-11-25t00-00-00.xbackup.gz
+  initBucketURL: http://s3.casa/mysql-main/main-auto-2025-11-25t00-00-00.xbackup.gz
   initBucketSecretName: mysql-main-backup
   volumeSpec:
     persistentVolumeClaim:
