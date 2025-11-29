@@ -77,7 +77,7 @@ spec:
           io.cilium/lb-ipam-ips: 192.168.108.44
         ports:
           http:
-            port: 8123
+            port: &httpPort 8123
           mdns-tcp:
             enabled: true
             port: 5353
@@ -102,7 +102,7 @@ spec:
                   value: /api/webhook/update_config
             backendRefs:
               - identifier: main
-                port: http
+                port: *httpPort
       local:
         hostnames:
           - hass.${SECRET_DOMAIN}
@@ -112,7 +112,7 @@ spec:
         rules:
           - backendRefs:
               - identifier: main
-                port: http
+                port: *httpPort
       main:
         annotations:
           external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
@@ -125,7 +125,7 @@ spec:
         rules:
           - backendRefs:
               - identifier: main
-                port: http
+                port: *httpPort
 
     persistence:
       config:
