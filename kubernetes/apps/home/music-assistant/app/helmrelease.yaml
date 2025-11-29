@@ -59,16 +59,13 @@ spec:
           flow:
             port: 8097
 
-    ingress:
+    route:
       app:
-        className: internal
-        hosts:
-          - host: mass.${SECRET_DOMAIN}
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames:
+          - radarr.${SECRET_DOMAIN}
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
 
     persistence:
       data:
