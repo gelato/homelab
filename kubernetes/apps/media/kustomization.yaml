@@ -11,3 +11,4 @@ resources:
   - ./media-storage/ks.yaml
   - ./qbittorrent/ks.yaml
   - ./jellyfin/ks.yaml
+  - ./flare-bypasser/ks.yaml

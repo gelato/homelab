@@ -1,0 +1,55 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: flare-bypasser
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: flare-bypasser-at
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    timeout: 5m
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controllers:
+      main:
+        strategy: RollingUpdate
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/yoori/flare-bypasser
+              tag: v0.1.53@sha256:95f3e89512a9727da5a4e580ac8ec5c325f65c00c04e3e1b0e975c59ad33f0cd
+            env:
+              TZ: ${TIMEZONE}
+              LOG_LEVEL: info
+              PORT: &port 8080
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+              startup:
+                enabled: false
+            resources:
+              requests:
+                cpu: 15m
+                memory: 477M
+              limits:
+                memory: 3G
+    service:
+      main:
+        controller: main
+        ports:
+          http:
+            port: *port
