@@ -3,9 +3,9 @@ machine:
     extraConfig:
       serializeImagePulls: false
     extraMounts:
-      - destination: /var/openebs/local
+      - destination: /var/mount/local
         type: bind
-        source: /var/openebs/local
+        source: /var/mount/local
         options:
           - bind
           - rshared
