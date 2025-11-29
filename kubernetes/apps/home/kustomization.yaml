@@ -13,4 +13,4 @@ resources:
   - ./home-assistant/ks.yaml
   - ./frigate/ks.yaml
   - ./silerotts/ks.yaml
-  - ./wyoming-gigaam-ctc
+  - ./wyoming-gigaam-ctc/ks.yaml
