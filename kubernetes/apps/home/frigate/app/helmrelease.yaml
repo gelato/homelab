@@ -66,8 +66,8 @@ spec:
               # requests:
                 # cpu: 2821m
                 # memory: 9617M
-              limits:
-                memory: 17G
+              # limits:
+              #   memory: 17G
 
         pod:
           # annotations:
