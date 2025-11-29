@@ -12,3 +12,5 @@ resources:
   - ./matter-server/ks.yaml
   - ./home-assistant/ks.yaml
   - ./frigate/ks.yaml
+  - ./silerotts/ks.yaml
+  - ./wyoming-gigaam-ctc
