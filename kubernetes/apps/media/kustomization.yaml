@@ -14,3 +14,4 @@ resources:
   - ./flare-bypasser/ks.yaml
   - ./jackett/ks.yaml
   - ./prowlarr/ks.yaml
+  - ./radarr/ks.yaml

@@ -1,23 +1,29 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app jackett
+  name: &app radarr
 spec:
   targetNamespace: media
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/media/jackett/app
   dependsOn:
-    - name: flare-bypasser
+    - name: media-storage
+    - name: qbittorrent
+    - name: prowlarr
+    - name: jackett
+  path: ./kubernetes/apps/media/radarr/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
+  wait: false
   interval: 30m
   retryInterval: 1m
-  timeout: 5m
+  timeout: 15m
   postBuild:
     substituteFrom:
       - name: cluster-secrets
