@@ -23,8 +23,8 @@ spec:
       retries: 3
   values:
     runtimeClassName: nvidia
-    nodeSelector:
-      feature.node.kubernetes.io/pci-0300_10de.present: "true"
+    # nodeSelector:
+    #   feature.node.kubernetes.io/pci-0300_10de.present: "true"
     securityContext:
       privileged: true
     # affinity:
