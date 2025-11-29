@@ -138,7 +138,7 @@ spec:
                 port: *metricsPort
         parentRefs:
           - name: envoy-internal
-            namespace: kube-system
+            namespace: network
             sectionName: https
 
     persistence:
