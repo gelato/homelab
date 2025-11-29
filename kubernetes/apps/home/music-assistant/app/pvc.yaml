@@ -21,4 +21,3 @@ spec:
     requests:
       storage: 256Mi
   storageClassName: longhorn-fast
-  volumename: pvc-b29d66e6-70d7-47fd-8908-8efbaaf01a7d
