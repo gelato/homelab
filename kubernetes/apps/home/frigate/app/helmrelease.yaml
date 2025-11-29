@@ -19,11 +19,6 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: mosquitto
-      namespace: home
-    - name: longhorn
-      namespace: storage
   values:
     defaultPodOptions:
       hostNetwork: false
@@ -34,14 +29,18 @@ spec:
           reloader.stakater.com/auto: "true"
         containers:
           main:
+
             image:
               repository: ghcr.io/blakeblackshear/frigate
               tag: 0.16.2-tensorrt@sha256:7351ca2ddbce6d712c8a13842eeb4248844e5334565e71b4f6ae438ddaf9d04d
+
             env:
               TZ: ${TIMEZONE}
+
             envFrom:
               - secretRef:
                   name: frigate-secret
+
             probes:
               liveness: &probes
                 enabled: true
@@ -57,16 +56,19 @@ spec:
               readiness: *probes
               startup:
                 enabled: false
+
             securityContext:
               privileged: true
+
             resources:
+              claims:
+                - name: intel-gpu
               requests:
                 cpu: 2821m
                 memory: 9617M
               limits:
                 memory: 17G
-                # gpu.intel.com/i915: 1
-                nvidia.com/gpu: 1
+
         pod:
           # annotations:
           #   k8s.v1.cni.cncf.io/networks: |
@@ -76,12 +78,14 @@ spec:
           #       "ips": ["192.168.108.55/24"],
           #       "mac": "aa:42:2c:ac:3a:aa"
           #     }]
+          resourceClaims:
+            - name: intel-gpu
+              resourceClaimTemplateName: frigate-gpu
           nodeSelector:
             google.feature.node.kubernetes.io/coral: "true"
-            # intel.feature.node.kubernetes.io/gpu: "true"
-            nvidia.com/gpu.present: "true"
+
     service:
-      main:
+      frigate:
         controller: main
         type: LoadBalancer
         externalTrafficPolicy: Cluster
@@ -89,7 +93,7 @@ spec:
           io.cilium/lb-ipam-ips: 192.168.108.55
         ports:
           http:
-            enabled: true
+            appProtocol: kubernetes.io/wss
             primary: true
             port: *port
           go2rtc:
@@ -98,49 +102,37 @@ spec:
           rtsp:
             enabled: true
             port: &restream-port 8554
-          webrtc:
-            enabled: true
+          webrtc-tcp:
             port: 8555
-    ingress:
-      main:
-        annotations:
-          hajimari.io/enable: "true"
-          hajimari.io/icon: cbi:frigate
-          # nginx.org/proxy-read-timeout: "86400s"
-          # nginx.org/proxy-send-timeout: "86400s"
-          # nginx.org/websocket-services: "main"
-          # nginx.ingress.kubernetes.io/whitelist-source-range: |
-          #   10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
-        className: internal
-        hosts:
-          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                service:
-                  identifier: main
-                  port: *port
-              - path: /ws
-                pathType: Prefix
-                service:
-                  identifier: main
-                  port: *port
-          - host: "go2rtc.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: main
-                  port: *api-port
-          - host: "go2rtc.${SECRET_DOMAIN}/api/ws"
-            paths:
-              - path: /api/ws
-                pathType: Prefix
-                service:
-                  identifier: main
-                  port: *api-port
-        tls:
-          - hosts:
-              - *host
+            protocol: TCP
+          webrtc-udp:
+            port: 8555
+            protocol: UDP
+
+    route:
+      frigate:
+        hostnames:
+          - frigate.${SECRET_DOMAIN}
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+
+        rules:
+          - backendRefs:
+              - identifier: frigate
+                port: *port
+      go2rtc:
+        hostnames:
+          - go2rtc.${SECRET_DOMAIN}
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+
+        rules:
+          - backendRefs:
+              - identifier: frigate
+                port: *api-port
+
     persistence:
       config:
         enabled: true

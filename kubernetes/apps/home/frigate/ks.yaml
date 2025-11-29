@@ -9,6 +9,14 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/gpu
+  dependsOn:
+    - name: intel-gpu-resource-driver
+      namespace: kube-system
+    - name: longhorn
+      namespace: storage
+    - name: mosquitto
   path: ./kubernetes/apps/home/frigate/app
   prune: true
   sourceRef:
