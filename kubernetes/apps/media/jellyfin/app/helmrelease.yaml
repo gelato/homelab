@@ -1,0 +1,123 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: jellyfin
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: jellyfin-config-at
+  interval: 30m
+  values:
+    defaultPodOptions:
+      runtimeClassName: nvidia
+      hostNetwork: true
+    controllers:
+      main:
+        type: statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
+        pod:
+          enableServiceLinks: false
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 568
+            fsGroupChangePolicy: "OnRootMismatch"
+            supplementalGroups:
+              - 44
+              - 110
+              - 993
+        containers:
+          main:
+            image:
+              repository: jellyfin/jellyfin
+              tag: 2025110305@sha256:eb6eb20b9bd463d9edbe1a0f0c252fc5efaf01fad7c29b9dcf9cfcd295739c87
+            env:
+              NVIDIA_VISIBLE_DEVICES: all
+              NVIDIA_DRIVER_CAPABILITIES: all
+              DOTNET_SYSTEM_IO_DISABLEFILELOCKING: "true"
+              JELLYFIN_FFmpeg__probesize: 1G
+              JELLYFIN_FFmpeg__analyzeduration: 200M
+              TZ: ${TIMEZONE}
+            resources:
+              requests:
+                cpu: 15m
+                memory: 1837M
+              limits:
+                # memory: 15G
+                nvidia.com/gpu: 1
+    service:
+      main:
+        controller: main
+        annotations:
+          io.cilium/lb-ipam-ips: 192.168.108.77
+        type: LoadBalancer
+        # externalTrafficPolicy: Cluster
+        ports:
+          http:
+            port: 8096
+          dlna:
+            port: 1900
+          disco:
+            port: 7359
+    ingress:
+      main:
+        enabled: true
+        className: internal
+        annotations:
+          # external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
+        hosts:
+          - host: &host1 jelly.${SECRET_DOMAIN}
+            paths:
+              - path: /
+                service:
+                  identifier: main
+                  port: http
+        tls:
+          - hosts:
+              - *host1
+      # sub:
+      #   enabled: true
+      #   className: external
+      #   annotations:
+      #     external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
+      #   hosts:
+      #     - host: &host2 jfin.${SECRET_DOMAIN}
+      #       paths:
+      #         - path: /
+      #           service:
+      #             identifier: main
+      #             port: http
+      #   tls:
+      #     - hosts:
+      #         - *host2
+    persistence:
+      config:
+        enabled: true
+        existingClaim: jellyfin-config
+        globalMounts:
+          - path: /config
+      transcode:
+        existingClaim: jellyfin-transcode
+        globalMounts:
+          - path: /cache/transcodes
+      cache:
+        enabled: true
+        type: emptyDir
+        medium: Memory
+        sizeLimit: 3Gi
+        globalMounts:
+          - path: /tmp/jellyfin
+      media:
+        existingClaim: media-storage
+        globalMounts:
+          - path: /media
+      nfs-media:
+        type: nfs
+        server: tower.local
+        path: /mnt/user/media
+        globalMounts:
+          - path: /nfs-media
+            readOnly: false
