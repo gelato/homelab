@@ -1,0 +1,147 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app ollama
+  namespace: ai
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: ollama
+      version: 1.34.0
+      sourceRef:
+        kind: HelmRepository
+        name: ollama
+
+  timeout: 5m
+
+  maxHistory: 2
+
+  install:
+    remediation:
+      retries: 3
+
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+
+  uninstall:
+    keepHistory: false
+
+  values:
+    updateStrategy:
+      type: "Recreate"
+
+    replicaCount: 1
+
+    ollama:
+      models:
+        pull:
+          - huihui_ai/gemma3-abliterated:12b
+          - gemma3n:latest
+          - mashriram/gemma3nTools:e4b
+          - hf.co/VanHolder/llava-saiga-8b-Q8_0-GGUF:Q8_0
+          - zongwei/gemma3-translator:4b
+          - hf.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q4_K_M
+
+        run:
+          - huihui_ai/gemma3-abliterated:12b
+
+      gpu:
+        # Enable GPU integration
+        enabled: true
+        # Specify the number of GPU
+        number: 1
+        # Default model to serve, if not set, no model will be served at container startup
+        type: 'nvidia'
+
+      defaultModel: "huihui_ai/gemma3-abliterated:12b"
+
+      serviceAccount:
+        # Specifies whether a service account should be created
+        create: true
+        # Automatically mount a ServiceAccount's API credentials?
+        automount: true
+        # The name of the service account to use.
+        # If not set and create is true, a name is generated using the fullname template
+        name: ""
+
+    runtimeClassName: nvidia
+
+    securityContext:
+      privileged: true
+
+    service:
+      type: LoadBalancer
+      loadBalancerIP: 192.168.108.66
+      annotations:
+        io.cilium/lb-ipam-ips: 192.168.108.66
+      port: 11434
+
+    ingress:
+      enabled: true
+      className: internal
+      hosts:
+        - host: &host ollama.${SECRET_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
+
+    resources:
+      requests:
+        memory: 8G
+        cpu: 200m
+        nvidia.com/gpu: 1
+      limits:
+        nvidia.com/gpu: 1
+
+    livenessProbe:
+      enabled: true
+      path: /
+      initialDelaySeconds: 600
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 6
+      successThreshold: 1
+
+    readinessProbe:
+      enabled: true
+      path: /
+      initialDelaySeconds: 30
+      periodSeconds: 5
+      timeoutSeconds: 3
+      failureThreshold: 6
+      successThreshold: 1
+
+    persistentVolume:
+      enabled: true
+      existingClaim: ollama-data-pvc
+
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: nvidia.com/gpu.present
+                  operator: In
+                  values:
+                    - "true"
+
+    nodeSelector:
+      nvidia.com/gpu.present: "true"
+
+    extraEnv:
+      - name: OLLAMA_NUM_PARALLEL
+        value: "1"
+      - name: OLLAMA_MAX_LOADED_MODELS
+        value: "3"
+      - name: OLLAMA_MAX_QUEUE
+        value: "512"
+      - name: OLLAMA_FLASH_ATTENTION
+        value: "1"
+      - name: OLLAMA_CONTEXT_LENGTH
+        value: "8096"
+      # - name: OLLAMA_KV_CACHE_TYPE
+      #   value: q8_0

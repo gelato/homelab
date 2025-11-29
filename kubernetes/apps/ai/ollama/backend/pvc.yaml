@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: ai
+  name: ollama-data-pvc
+  labels:
+    type: longhorn
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 120Gi
+  storageClassName: longhorn-fast
+  volumename: pvc-4e0ae0d9-400a-4010-a278-8107c6fda520

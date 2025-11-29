@@ -37,8 +37,8 @@ spec:
         containers:
           app:
             image:
-              repository: quay.io/mizeraj/ha-fusion
-              tag: latest@sha256:4e87b3318dcf0010bf3feb0a664d9a35858d20f6f21eff7d064366e8676aa19f
+              repository: docker.io/mizeraj/ha-fusion
+              tag: latest
               pullPolicy: Always
             env:
               TZ: "${TIMEZONE}"
