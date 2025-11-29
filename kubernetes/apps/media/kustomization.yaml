@@ -12,3 +12,4 @@ resources:
   - ./qbittorrent/ks.yaml
   - ./jellyfin/ks.yaml
   - ./flare-bypasser/ks.yaml
+  - ./jackett/ks.yaml
