@@ -22,6 +22,9 @@ spec:
       strategy: rollback
       retries: 3
   values:
+    image:
+      repository: ghcr.io/nvidia/k8s-device-plugin
+      tag: 9762cfb5-amd64@sha256:d43897de274b63c534aafaeae651057b39b5561b7be6cdda01a564e6afd4d3f2
     runtimeClassName: nvidia
     securityContext:
       privileged: true
