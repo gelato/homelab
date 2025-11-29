@@ -77,7 +77,7 @@ spec:
         supplementalGroups: [10000, 568]
         seccompProfile: { type: RuntimeDefault }
     service:
-      app:
+      qbittorrent:
         controller: qbittorrent
         type: LoadBalancer
         annotations:
@@ -100,7 +100,7 @@ spec:
                   type: PathPrefix
                   value: /
             backendRefs:
-              - name: app
+              - name: qbittorrent
                 port: *port
         parentRefs:
           - name: envoy-internal
