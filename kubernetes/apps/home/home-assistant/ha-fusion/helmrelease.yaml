@@ -37,7 +37,7 @@ spec:
         containers:
           app:
             image:
-              repository: bbotezatu/addon-ha-fusion-amd64
+              repository: quay.io/mizeraj/ha-fusion
               tag: latest
               pullPolicy: Always
             env:
