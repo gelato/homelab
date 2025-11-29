@@ -63,9 +63,9 @@ spec:
             resources:
               claims:
                 - name: intel-gpu
-              requests:
+              # requests:
                 # cpu: 2821m
-                memory: 9617M
+                # memory: 9617M
               limits:
                 memory: 17G
 
