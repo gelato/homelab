@@ -48,24 +48,28 @@ spec:
                 memory: 3G
 
     service:
-      app:
+      mass:
         controller: music-assistant
         type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: "192.168.108.22"
         ports:
           http:
-            port: 8095
+            port: &httpPort 8095
           flow:
             port: 8097
 
     route:
-      app:
+      mass:
         hostnames:
-          - radarr.${SECRET_DOMAIN}
+          - mass.${SECRET_DOMAIN}
         parentRefs:
           - name: envoy-internal
             namespace: network
+        rules:
+          - backendRefs:
+              - identifier: mass
+                port: *httpPort
 
     persistence:
       data:

@@ -60,7 +60,7 @@ spec:
               limits:
                 memory: 105M
     service:
-      app:
+      homedash:
         controller: *app
         type: ClusterIP
         ports:
@@ -68,7 +68,7 @@ spec:
             enabled: true
             primary: true
             protocol: TCP
-            port: 5050
+            port: &httpPort 5050
     persistence:
       config:
         enabled: true
@@ -77,16 +77,14 @@ spec:
           ha-fusion:
             app:
               - path: "/app/data"
-    ingress:
-      app:
-        className: internal
-        hosts:
-          - host: &host homedash.${SECRET_DOMAIN}
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts:
-              - *host
+    route:
+      homedash:
+        hostnames:
+          - homedash.${SECRET_DOMAIN}
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - backendRefs:
+              - identifier: homedash
+                port: *httpPort
