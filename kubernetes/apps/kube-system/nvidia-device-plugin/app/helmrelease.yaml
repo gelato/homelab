@@ -24,7 +24,7 @@ spec:
   values:
     runtimeClassName: nvidia
     nodeSelector:
-      nvidia.com/gpu.present: "true"
+      feature.node.kubernetes.io/pci-0300_10de.present: "true"
     securityContext:
       privileged: true
     affinity:
