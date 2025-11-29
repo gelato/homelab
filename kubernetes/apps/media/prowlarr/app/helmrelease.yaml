@@ -127,14 +127,14 @@ spec:
                   type: PathPrefix
                   value: /
             backendRefs:
-              - name: app
+              - name: prowlarr-app
                 port: *port
           - matches:
               - path:
                   type: PathPrefix
                   value: /metrics
             backendRefs:
-              - name: metrics
+              - name: prowlarr-metrics
                 port: *metricsPort
         parentRefs:
           - name: envoy-internal
