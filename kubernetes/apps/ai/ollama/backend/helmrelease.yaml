@@ -39,7 +39,7 @@ spec:
     ollama:
       models:
         pull:
-          - huihui_ai/gemma3-abliterated:12b
+          - gemma3:12b
           - gemma3n:latest
           - mashriram/gemma3nTools:e4b
           - hf.co/VanHolder/llava-saiga-8b-Q8_0-GGUF:Q8_0
@@ -47,7 +47,7 @@ spec:
           - hf.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q4_K_M
 
         run:
-          - huihui_ai/gemma3-abliterated:12b
+          - gemma3:12b
 
       gpu:
         # Enable GPU integration
@@ -57,7 +57,7 @@ spec:
         # Default model to serve, if not set, no model will be served at container startup
         type: 'nvidia'
 
-      defaultModel: "huihui_ai/gemma3-abliterated:12b"
+      defaultModel: "gemma3:12b"
 
       serviceAccount:
         # Specifies whether a service account should be created
