@@ -80,11 +80,12 @@ spec:
               - "[STATUS] == 200"
         parentRefs:
           - name: envoy-internal
-            namespace: networking
+            namespace: network
         rules:
           - backendRefs:
               - name: *app
                 port: *httpPort
+
     persistence:
       config:
         enabled: true
