@@ -14,7 +14,7 @@ spec:
       runtimeClassName: nvidia
       hostNetwork: true
     controllers:
-      jellyfin:
+      main:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
@@ -51,7 +51,7 @@ spec:
                 nvidia.com/gpu: 1
     service:
       main:
-        controller: *app
+        controller: main
         annotations:
           io.cilium/lb-ipam-ips: *ip
         type: LoadBalancer
