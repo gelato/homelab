@@ -10,14 +10,14 @@ spec:
       storage: 25Gi
   storageClassName: longhorn-fast
   volumeName: jellyfin
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: jellyfin-transcode
-spec:
-  accessModes: ["ReadWriteOnce"]
-  resources:
-    requests:
-      storage: 150Gi
-  storageClassName: local-hostpath
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: jellyfin-transcode
+# spec:
+#   accessModes: ["ReadWriteOnce"]
+#   resources:
+#     requests:
+#       storage: 150Gi
+#   storageClassName: local-hostpath
