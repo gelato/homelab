@@ -92,6 +92,7 @@ spec:
             protocol: TCP
             port: *port
         externalTrafficPolicy: Cluster
+
     persistence:
       config:
         enabled: true
@@ -109,5 +110,5 @@ spec:
             namespace: network
         rules:
           - backendRefs:
-              - identifier: *app
+              - identifier: app
                 port: *port
