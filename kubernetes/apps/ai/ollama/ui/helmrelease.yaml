@@ -8,7 +8,7 @@ spec:
   interval: 30m
   chartRef:
     kind: OCIRepository
-    name: home-assistant-at
+    name: ollama-ui-at
   maxHistory: 2
   install:
     remediation:
@@ -47,22 +47,17 @@ spec:
           http:
             port: &httpPort 8080
 
-    ingress:
-      main:
-        enabled: true
-        className: internal
-        annotations:
-          hajimari.io/appName: "Ollama Chat"
-          hajimari.io/enable: "true"
-          hajimari.io/instance: "admin"
-          hajimari.io/group: "AI"
-        hosts:
-          - host: &host "chat.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                service:
-                  identifier: main
-                  port: *httpPort
+    route:
+      app:
+        hostnames: ["chat.${SECRET_DOMAIN}"]
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - backendRefs:
+              - name: main
+                port: *httpPort
+
     persistence:
       config:
         enabled: true

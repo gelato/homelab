@@ -2,7 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: home-assistant-at
+  name: ollama-ui-at
 spec:
   interval: 15m
   layerSelector:

@@ -78,16 +78,18 @@ spec:
       loadBalancerIP: 192.168.108.66
       annotations:
         io.cilium/lb-ipam-ips: 192.168.108.66
-      port: 11434
+      port: &httpPort 11434
 
-    ingress:
-      enabled: true
-      className: internal
-      hosts:
-        - host: &host ollama.${SECRET_DOMAIN}
-          paths:
-            - path: /
-              pathType: Prefix
+    route:
+      app:
+        hostnames: ["ollama.${SECRET_DOMAIN}"]
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *httpPort
 
     resources:
       requests:
