@@ -10,7 +10,7 @@ resources:
   - ./namespace.yaml
   - ./media-storage/ks.yaml
   - ./qbittorrent/ks.yaml
-  - ./jellyfin/ks.yaml
+  # - ./jellyfin/ks.yaml
   - ./flare-bypasser/ks.yaml
   - ./jackett/ks.yaml
   - ./prowlarr/ks.yaml
