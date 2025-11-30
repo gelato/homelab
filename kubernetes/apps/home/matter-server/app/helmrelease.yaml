@@ -105,6 +105,10 @@ spec:
           matter-server:
             app:
               - path: "/data"
+      tmp:
+        type: emptyDir
+        medium: Memory
+        
     route:
       main:
         hostnames:
