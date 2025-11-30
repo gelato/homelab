@@ -55,7 +55,7 @@ spec:
             namespace: network
         rules:
           - backendRefs:
-              - name: main
+              - name: *app
                 port: *httpPort
 
     persistence:
