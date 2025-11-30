@@ -45,6 +45,7 @@ spec:
               requests:
                 cpu: 15m
                 memory: 1837M
+                nvidia.com/gpu: 1
               limits:
                 # memory: 15G
                 nvidia.com/gpu: 1
