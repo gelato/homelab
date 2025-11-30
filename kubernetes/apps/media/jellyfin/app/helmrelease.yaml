@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: jellyfin
+  name: &app jellyfin
 spec:
   chartRef:
     kind: OCIRepository
@@ -40,6 +40,7 @@ spec:
               DOTNET_SYSTEM_IO_DISABLEFILELOCKING: "true"
               JELLYFIN_FFmpeg__probesize: 1G
               JELLYFIN_FFmpeg__analyzeduration: 200M
+              JELLYFIN_PublishedServerUrl: &ip 192.168.108.77
               TZ: ${TIMEZONE}
             resources:
               requests:
@@ -50,49 +51,40 @@ spec:
                 nvidia.com/gpu: 1
     service:
       main:
-        controller: main
+        controller: *app
         annotations:
-          io.cilium/lb-ipam-ips: 192.168.108.77
+          io.cilium/lb-ipam-ips: *ip
         type: LoadBalancer
         # externalTrafficPolicy: Cluster
         ports:
           http:
-            port: 8096
+            port: &httpPort 8096
           dlna:
             port: 1900
           disco:
             port: 7359
-    ingress:
-      main:
-        enabled: true
-        className: internal
+
+    route:
+      app:
+        hostnames: ["{{ .Release.Name }}.${SECRET_DOMAIN}"]
         annotations:
-          # external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
-        hosts:
-          - host: &host1 jelly.${SECRET_DOMAIN}
-            paths:
-              - path: /
-                service:
-                  identifier: main
-                  port: http
-        tls:
-          - hosts:
-              - *host1
-      # sub:
-      #   enabled: true
-      #   className: external
-      #   annotations:
-      #     external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
-      #   hosts:
-      #     - host: &host2 jfin.${SECRET_DOMAIN}
-      #       paths:
-      #         - path: /
-      #           service:
-      #             identifier: main
-      #             port: http
-      #   tls:
-      #     - hosts:
-      #         - *host2
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/icon: jellyfin.png
+          gethomepage.dev/name: Jellyfin
+          gethomepage.dev/group: Media
+          gethomepage.dev/widget.type: jellyfin
+          gethomepage.dev/widget.url: http://jellyfin.media.svc.cluster.local:8096
+          gethomepage.dev/widget.key: '{{ "{{HOMEPAGE_VAR_JELLYFIN_API_KEY}}" }}'
+          gatus.home-operations.com/endpoint: |
+            conditions:
+              - "[STATUS] == 200"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *httpPort
     persistence:
       config:
         enabled: true
