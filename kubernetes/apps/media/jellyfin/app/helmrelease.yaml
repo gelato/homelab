@@ -40,7 +40,6 @@ spec:
               DOTNET_SYSTEM_IO_DISABLEFILELOCKING: "true"
               JELLYFIN_FFmpeg__probesize: 1G
               JELLYFIN_FFmpeg__analyzeduration: 200M
-              JELLYFIN_PublishedServerUrl: &ip 192.168.108.77
               TZ: ${TIMEZONE}
             resources:
               requests:
