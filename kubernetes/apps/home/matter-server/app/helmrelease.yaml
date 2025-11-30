@@ -105,10 +105,18 @@ spec:
           matter-server:
             app:
               - path: "/data"
+      python:
+        enabled: true
+        type: emptyDir
+        medium: Memory
+        advancedMounts:
+          matter-server:
+            app:
+              - path: "/usr/local/lib/python3.12/site-packages/credentials"
       tmp:
         type: emptyDir
         medium: Memory
-        
+
     route:
       main:
         hostnames:
