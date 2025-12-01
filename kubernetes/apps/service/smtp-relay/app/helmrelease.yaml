@@ -8,7 +8,7 @@ spec:
   interval: 30m
   chartRef:
     kind: OCIRepository
-    name: jellyfin-config-at
+    name: smtp-relay-at
   install:
     remediation:
       retries: 3
