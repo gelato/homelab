@@ -279,7 +279,7 @@ spec:
       targetPort: http
 
     gateway:
-      enabled: true
+      enabled: false
       annotations:
           external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
       hosts:
