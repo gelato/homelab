@@ -278,12 +278,16 @@ spec:
       port: 8008
       targetPort: http
 
+    ingress:
+      enabled: false
+
     gateway:
       enabled: true
       annotations:
           external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
       hosts:
         - tracking.${SECRET_DOMAIN}
+      includeUnderscoreSynapse: true
       parentRefs:
         - name: envoy-external
           namespace: network
