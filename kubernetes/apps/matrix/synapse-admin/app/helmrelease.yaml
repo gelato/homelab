@@ -58,7 +58,7 @@ spec:
 
         rules:
           - backendRefs:
-              - name: app
+              - name: synapse-admin
                 port: *port
 
     persistence:
