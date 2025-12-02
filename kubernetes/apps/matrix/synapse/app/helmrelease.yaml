@@ -289,7 +289,7 @@ spec:
       parentRefs:
         - name: envoy-external
           namespace: network
-          sectionName: https
+          # sectionName: https
 
     postgresql:
       enabled: false
