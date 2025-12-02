@@ -310,10 +310,6 @@ spec:
             - kind: Service
               name: matrix-synapse
               port: 8008
-          matches:
-            - path:
-                type: RegularExpression
-                value: ^/_matrix/client/(.*)/(login|logout|refresh)
 
     postgresql:
       enabled: false

@@ -1,0 +1,66 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app mas
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+    namespace: flux-system
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    controllers:
+      mas:
+        strategy: Recreate
+        containers:
+          app:
+            image:
+              repository: ghcr.io/element-hq/matrix-authentication-service
+              tag: 1.7@sha256:83c5da4bd06772b4b98b18b7702485aefc26f1ce4787110687f1358a4291c7a3
+            command:
+              - "/usr/local/bin/mas-cli"
+            args:
+              - "server"
+            env:
+              MAS_CONFIG: /config/config.yaml
+            resources:
+              requests:
+                cpu: 15m
+                memory: 100M
+              limits:
+                memory: 500Mi
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: &port 8080
+    route:
+      app:
+        annotations:
+          gatus.home-operations.com/endpoint: |-
+            group: Matrix
+        hostnames:
+          - "{{ .Release.Name }}.${SECRET_DOMAIN}"
+        parentRefs:
+          - name: external
+            namespace: network
+
+        rules:
+          - backendRefs:
+              - name: *app
+                port: *port
+    persistence:
+      config:
+        enabled: true
+        type: secret
+        name: mas-secret
