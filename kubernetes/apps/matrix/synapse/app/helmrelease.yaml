@@ -296,8 +296,6 @@ spec:
       enabled: true
       annotations:
           external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
-      hosts:
-        - tracking.${SECRET_DOMAIN}
       includeUnderscoreSynapse: true
       parentRefs:
         - name: envoy-external
