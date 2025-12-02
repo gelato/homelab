@@ -278,20 +278,6 @@ spec:
       port: 8008
       targetPort: http
 
-    ingress:
-      enabled: false
-      className: external
-      annotations:
-        nginx.ingress.kubernetes.io/use-regex: "true"
-        nginx.ingress.kubernetes.io/proxy-body-size: 2048m
-        external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
-      tls:
-        - secretName: synapse-tls
-          hosts:
-            - ${SECRET_DOMAIN}
-            - matrix.${SECRET_DOMAIN}
-            - tracking.${SECRET_DOMAIN}
-
     gateway:
       enabled: true
       annotations:
