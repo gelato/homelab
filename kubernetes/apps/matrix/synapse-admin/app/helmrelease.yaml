@@ -34,7 +34,7 @@ spec:
         controller: synapse-admin
         ports:
           http:
-            port: 80
+            port: &port 80
 
     ingress:
       app:
@@ -47,6 +47,19 @@ spec:
                 service:
                   identifier: app
                   port: http
+
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.${SECRET_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+
+        rules:
+          - backendRefs:
+              - name: app
+                port: *port
 
     persistence:
       config:
