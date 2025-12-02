@@ -48,5 +48,5 @@ spec:
 
         rules:
           - backendRefs:
-              - name: main
+              - name: jackett
                 port: *port
