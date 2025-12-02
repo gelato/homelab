@@ -305,11 +305,6 @@ spec:
         - name: external-envoy
           namespace: network
           sectionName: https
-      paths:
-        - backendRefs:
-            - kind: Service
-              name: matrix-synapse
-              port: 8008
 
     postgresql:
       enabled: false
