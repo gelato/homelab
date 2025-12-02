@@ -8,7 +8,7 @@ spec:
   interval: 30m
   chartRef:
     kind: OCIRepository
-    name: wyoming-gigaam-ctc-at
+    name: baibot-at
   install:
     remediation:
       retries: 3
