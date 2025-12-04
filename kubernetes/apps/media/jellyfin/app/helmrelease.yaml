@@ -12,7 +12,7 @@ spec:
   values:
     defaultPodOptions:
       runtimeClassName: nvidia
-      hostNetwork: true
+      # hostNetwork: true
     controllers:
       main:
         type: statefulset
@@ -41,6 +41,9 @@ spec:
               JELLYFIN_FFmpeg__probesize: 1G
               JELLYFIN_FFmpeg__analyzeduration: 200M
               TZ: ${TIMEZONE}
+              PUID: 1000
+              PGID: 1000
+              JELLYFIN_PublishedServerUrl: http://jelly.skynerv.com
             resources:
               requests:
                 cpu: 15m
