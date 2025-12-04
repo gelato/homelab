@@ -33,7 +33,7 @@ spec:
           main:
             image:
               repository: ghcr.io/jellyfin/jellyfin
-              tag: 10.11.4
+              tag: 2025120105@sha256:54424ec57cbcffbec940a08cf5845212cb3a515a51773665ba008cf17a690723
             env:
               NVIDIA_VISIBLE_DEVICES: all
               NVIDIA_DRIVER_CAPABILITIES: all
