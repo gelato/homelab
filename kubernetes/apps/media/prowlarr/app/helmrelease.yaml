@@ -145,7 +145,7 @@ spec:
         enabled: true
         existingClaim: jellyfin-config
         globalMounts:
-          - path: /config
+          - path: /jconfig
       config:
         existingClaim: prowlarr-config
       tmp:
