@@ -32,8 +32,8 @@ spec:
         containers:
           main:
             image:
-              repository: jellyfin/jellyfin
-              tag: 2025120105@sha256:54424ec57cbcffbec940a08cf5845212cb3a515a51773665ba008cf17a690723
+              repository: ghcr.io/hotio/jellyfin
+              tag: release-10.11.4@sha256:a2cb22b12b2bbfd2058cea16459ed3b6a20a80ade7db9b47d131e34d478db82b
             env:
               NVIDIA_VISIBLE_DEVICES: all
               NVIDIA_DRIVER_CAPABILITIES: all
