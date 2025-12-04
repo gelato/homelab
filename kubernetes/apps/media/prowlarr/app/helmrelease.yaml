@@ -141,11 +141,6 @@ spec:
             namespace: network
 
     persistence:
-      jconfig:
-        enabled: true
-        existingClaim: jellyfin-config
-        globalMounts:
-          - path: /jconfig
       config:
         existingClaim: prowlarr-config
       tmp:
