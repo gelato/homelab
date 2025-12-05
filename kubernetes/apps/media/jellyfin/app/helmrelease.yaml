@@ -12,7 +12,7 @@ spec:
   values:
     defaultPodOptions:
       runtimeClassName: nvidia
-      # hostNetwork: true
+      hostNetwork: true
     controllers:
       main:
         type: statefulset
