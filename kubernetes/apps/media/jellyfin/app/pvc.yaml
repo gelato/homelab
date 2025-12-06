@@ -7,8 +7,9 @@ spec:
   accessModes: ["ReadWriteOnce"]
   resources:
     requests:
-      storage: 30Gi
+      storage: 25Gi
   storageClassName: longhorn-fast
+  volumeName: jellyfin-config
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
