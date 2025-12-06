@@ -97,7 +97,7 @@ spec:
       transcode:
         existingClaim: jellyfin-transcode
         globalMounts:
-          - path: /cache/transcodes
+          - path: /config/cache/transcodes
       cache:
         enabled: true
         type: emptyDir
