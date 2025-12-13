@@ -15,3 +15,4 @@ resources:
   - ./silerotts/ks.yaml
   - ./wyoming-gigaam-ctc/ks.yaml
   - ./music-assistant/ks.yaml
+  - ./espresence/ks.yaml
