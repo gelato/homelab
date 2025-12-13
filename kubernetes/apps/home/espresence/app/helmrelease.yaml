@@ -65,3 +65,11 @@ spec:
         existingClaim: espresence
         globalMounts:
           - path: /config/espresense
+      config-file:
+        type: configMap
+        name: espresence-configmap
+        advancedMounts:
+          main:
+            main:
+              - path: /config/espresense/config.yaml
+                subPath: config.yaml

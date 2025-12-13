@@ -1,0 +1,59 @@
+# For Home Assistant's MQTT addon
+mqtt:
+  username: ${MOSQUITTO_MQTT_USERNAME}
+  password: ${MOSQUITTO_MQTT_PASSWORD}
+  ssl: false
+
+# For external MQTT, also include:
+  host: mosquitto
+  port: 1883
+
+gps:
+  latitude: "${SECRET_HOME_LATITUDE}"
+  longitude: "${SECRET_HOME_LONGITUDE}"
+  elevation: "${SECRET_HOME_ELEVATION}"
+  rotation: 0
+
+map:
+  flip_x: false # Set to true to flip X coordinates (default: false)
+  flip_y: true # Set to true to use bottom-left origin, false for top-left origin (default: true)
+  wall_thickness: 0.1 # Wall thickness in meters
+  wall_color: "#ddd" # Optional wall color, if not set uses room color
+  wall_opacity: 0.35 # Optional wall opacity, if not set defaults to 0.35
+
+optimization:
+  enabled: true
+  interval_secs: 3600
+  limits:
+    absorption_min: 2.5
+    absorption_max: 3.5
+    tx_ref_rssi_min: -70
+    tx_ref_rssi_max: -50
+    rx_adj_rssi_min: -15
+    rx_adj_rssi_max: 20
+
+locators:
+  nadaraya_watson:
+    enabled: true
+    floors: ["ground", "outside"]  # floor id, see floor configuration section
+    bandwidth: 0.5
+    kernel: gaussian
+
+  nelder_mead:
+    enabled: true
+    floors: ["ground", "outside"]  # floor id, see floor configuration section
+    weighting:
+      algorithm: gaussian
+      props:
+        sigma: 0.10
+
+  nearest_node:
+    enabled: true
+    max_distance: 10 # in meters
+
+timeout: 30 # How long before device considered stale
+away_timeout: 120 # How long before device is considered away
+
+history:
+  enabled: false # Enable to log history to db (Beta)
+  expire_after: 24h # Expire after 24 hours
