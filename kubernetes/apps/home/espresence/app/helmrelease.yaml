@@ -78,5 +78,5 @@ spec:
         advancedMounts:
           main:
             main:
-              - path: /config/espresense/config.yaml
+              - path: /config/espresense
                 subPath: config.yaml
