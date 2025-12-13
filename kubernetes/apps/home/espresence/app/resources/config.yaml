@@ -6,7 +6,7 @@ mqtt:
 
 # For external MQTT, also include:
   host: mosquitto.home.svc
-  port: 1883
+  port: 8883
 
 gps:
   latitude: "${SECRET_HOME_LATITUDE}"
