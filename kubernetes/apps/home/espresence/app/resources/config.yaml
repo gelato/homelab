@@ -5,7 +5,7 @@ mqtt:
   ssl: false
 
 # For external MQTT, also include:
-  host: mosquitto
+  host: mosquitto.home.svc
   port: 1883
 
 gps:
