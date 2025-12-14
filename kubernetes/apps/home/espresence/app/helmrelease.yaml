@@ -32,7 +32,7 @@ spec:
               repository: espresense/espresense-companion
               tag: 2.0.4-b85@sha256:ea1abb45e888b43c9ecddc1870bc160a9a22fa5c9cc5f071888ca4e9144cc946
             command: ["/bin/sh", "-c"]
-            args: ["cp /tmp/config.yaml /config/espresence/config.yaml && chmod 0700 /config/espresence/config.yaml"]
+            args: ["cp /tmp/config/config.yaml /config/espresence/config.yaml && chmod 0700 /config/espresence/config.yaml"]
         containers:
           main:
             image:
@@ -65,7 +65,20 @@ spec:
           io.cilium/lb-ipam-ips: 192.168.108.10
         ports:
           espresence:
-            port: 8267
+            port: &port 8267
+    route:
+      espresence:
+        hostnames:
+          - espresence.${SECRET_DOMAIN}
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+
+        rules:
+          - backendRefs:
+              - identifier: espresence
+                port: *port
+
     persistence:
       config:
         enabled: true
@@ -78,5 +91,5 @@ spec:
         advancedMounts:
           main:
             main:
-              - path: /tmp
+              - path: /tmp/config
                 subPath: config.yaml
