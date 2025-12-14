@@ -90,6 +90,6 @@ spec:
         name: espresence-configmap
         advancedMounts:
           main:
-            main:
+            init-config:
               - path: /tmp/config
                 subPath: config.yaml
