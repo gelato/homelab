@@ -64,7 +64,7 @@ spec:
         enabled: true
         existingClaim: espresence
         globalMounts:
-          - path: /config/espresense
+          - path: /config/espresense/.storage
       config-file:
         type: configMap
         name: espresence-configmap
