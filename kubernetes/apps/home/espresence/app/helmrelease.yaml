@@ -32,7 +32,7 @@ spec:
               repository: busybox
               tag: stable
             command: ["/bin/sh", "-c"]
-            args: ["cp /tmp/config.yaml /config/espresence/config.yaml && chmod 0700 /config/espresence/config.yaml"]
+            args: ["ls -lah /tmp/ && cp /tmp/config.yaml /config/espresence/config.yaml && chmod 0700 /config/espresence/config.yaml"]
         containers:
           main:
             image:
