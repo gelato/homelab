@@ -26,6 +26,13 @@ spec:
       main:
         annotations:
           reloader.stakater.com/auto: "true"
+        initContainers:
+          init-config:
+            image:
+              repository: espresense/espresense-companion
+              tag: 2.0.4-b85@sha256:ea1abb45e888b43c9ecddc1870bc160a9a22fa5c9cc5f071888ca4e9144cc946
+            command: ["/bin/sh", "-c"]
+            args: ["cp /tmp/config.yaml /config/espresence/config.yaml && chmod 0700 /config/espresence/config.yaml"]
         containers:
           main:
             image:
@@ -71,5 +78,5 @@ spec:
         advancedMounts:
           main:
             main:
-              - path: /config/espresense
+              - path: /tmp
                 subPath: config.yaml
