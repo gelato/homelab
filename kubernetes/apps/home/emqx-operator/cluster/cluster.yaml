@@ -61,9 +61,6 @@ spec:
         spec:
           type: LoadBalancer
           loadBalancerIP: 192.168.108.10
-      dashboardServiceTemplate:
-        spec:
-          type: LoadBalancer
       replicas: 3
       envFrom: &envFrom
         - secretRef:
