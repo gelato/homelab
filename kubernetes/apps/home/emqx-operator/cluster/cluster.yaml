@@ -85,9 +85,12 @@ spec:
         - name: emqx-tls
           mountPath: /mounted/cert
   listenersServiceTemplate:
+    metadata:
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: "emqx.${SECRET_DOMAIN}"
+        lbipam.cilium.io/ips: 192.168.108.10
     spec:
       type: LoadBalancer
-      loadBalancerIP: 192.168.108.10
   dashboardServiceTemplate:
     spec:
       type: LoadBalancer
