@@ -8,6 +8,15 @@ spec:
   image: public.ecr.aws/emqx/emqx:5.8.5
   config:
     data: |
+      listeners.ssl.default {
+        bind = "0.0.0.0:8883"
+        ssl_options {
+          cacertfile = "/mounted/cert/ca.crt"
+          certfile = "/mounted/cert/tls.crt"
+          keyfile = "/mounted/cert/tls.key"
+          gc_after_handshake = true
+          handshake_timeout = 5s
+        }
       authentication {
         backend = "built_in_database"
         mechanism = "password_based"
@@ -41,6 +50,20 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     spec:
+      volumeClaimTemplates:
+        storageClassName: longhorn-fast
+        resources:
+          requests:
+            storage: 256Mi
+        accessModes:
+          - ReadWriteMany
+      listenersServiceTemplate:
+        spec:
+          type: LoadBalancer
+          loadBalancerIP: 192.168.108.10
+      dashboardServiceTemplate:
+        spec:
+          type: LoadBalancer
       replicas: 3
       envFrom: &envFrom
         - secretRef:
@@ -61,3 +84,12 @@ spec:
         - name: init-mqtt
           configMap:
             name: emqx-init-mqtt-configmap
+  replicantTemplate:
+    spec:
+      extraVolumes:
+        - name: emqx-tls
+          secret:
+            secretName: emqx-tls
+      extraVolumeMounts:
+        - name: emqx-tls
+          mountPath: /mounted/cert
