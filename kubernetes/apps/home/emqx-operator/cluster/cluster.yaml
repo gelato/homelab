@@ -17,6 +17,7 @@ spec:
           gc_after_handshake = true
           handshake_timeout = 5s
         }
+      }
       authentication {
         backend = "built_in_database"
         mechanism = "password_based"
