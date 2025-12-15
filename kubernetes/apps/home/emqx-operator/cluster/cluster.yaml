@@ -51,13 +51,6 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     spec:
-      volumeClaimTemplates:
-        storageClassName: longhorn-fast
-        resources:
-          requests:
-            storage: 256Mi
-        accessModes:
-          - ReadWriteMany
       replicas: 3
       envFrom: &envFrom
         - secretRef:
@@ -74,6 +67,13 @@ spec:
             - name: init-mqtt
               mountPath: /init-mqtt.py
               subPath: init-mqtt.py
+      volumeClaimTemplates:
+        storageClassName: longhorn-fast
+        resources:
+          requests:
+            storage: 256Mi
+        accessModes:
+          - ReadWriteMany
       extraVolumes:
         - name: init-mqtt
           configMap:
