@@ -16,3 +16,4 @@ resources:
   - ./wyoming-gigaam-ctc/ks.yaml
   - ./music-assistant/ks.yaml
   - ./espresence/ks.yaml
+  - ./emqx-operator/ks.yaml
