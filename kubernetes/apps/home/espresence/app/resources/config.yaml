@@ -1,6 +1,6 @@
 # MQTT Connection, if empty will query and use hassio provided mqtt
 mqtt:
-  host: mosquitto.home.svc
+  host: 192.168.108.10
   port: 1883
   ssl: false
   username: ${MOSQUITTO_MQTT_USERNAME}
