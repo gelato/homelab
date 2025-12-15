@@ -78,6 +78,12 @@ spec:
         - name: init-mqtt
           configMap:
             name: emqx-init-mqtt-configmap
+        - name: emqx-tls
+          secret:
+            secretName: emqx-tls
+      extraVolumeMounts:
+        - name: emqx-tls
+          mountPath: /mounted/cert
   listenersServiceTemplate:
     spec:
       type: LoadBalancer
@@ -85,12 +91,3 @@ spec:
   dashboardServiceTemplate:
     spec:
       type: LoadBalancer
-  replicantTemplate:
-    spec:
-      extraVolumes:
-        - name: emqx-tls
-          secret:
-            secretName: emqx-tls
-      extraVolumeMounts:
-        - name: emqx-tls
-          mountPath: /mounted/cert
