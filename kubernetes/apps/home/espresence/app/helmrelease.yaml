@@ -32,7 +32,7 @@ spec:
               repository: busybox
               tag: stable
             command: ["/bin/sh", "-c"]
-            args: ["ls -lah /tmp/ && cp /external_config/config.yaml /config/espresence/config.yaml && chmod 0700 /config/espresence/config.yaml"]
+            args: ["cp /tmp/config.yaml /config/espresence/config.yaml && chmod 0700 /config/espresence/config.yaml"]
         containers:
           main:
             image:
@@ -85,15 +85,10 @@ spec:
         existingClaim: espresence
         globalMounts:
           - path: /config/espresense/.storage
-      external-config:
-        type: emptyDir
-        globalMounts:
-          - path: /external_config
       config-file:
         type: configMap
         name: espresence-configmap
         advancedMounts:
           main:
             init-config:
-              - path: /external_config
-                subPath: config.yaml
+              - path: /tmp/config.yaml
