@@ -32,14 +32,14 @@ spec:
               repository: espresense/espresense-companion
               tag: 2.0.4-b85@sha256:ea1abb45e888b43c9ecddc1870bc160a9a22fa5c9cc5f071888ca4e9144cc946
             command: ["/bin/sh", "-c"]
-            args: ["cp /tmp/config/config.yaml /config/espresense/config.yaml && chmod 0700 /config/espresense/config.yaml && mkdir -p /config/espresense/.storage && chown -R 568:568 /config"]
+            args: ["cp /tmp/config/config.yaml /config/espresense/config.yaml && chmod 0700 /config/espresense/config.yaml && mkdir -p /config/espresense/.storage && chown 568:568 /config && chown -R 568:568 /config/espresense"]
         containers:
           main:
             image:
               repository: espresense/espresense-companion
               tag: 2.0.4-b85@sha256:ea1abb45e888b43c9ecddc1870bc160a9a22fa5c9cc5f071888ca4e9144cc946
-            command: ["/bin/sh", "-c"]
-            args: ["sleep 10000"]
+            # command: ["/bin/sh", "-c"]
+            # args: ["sleep 10000"]
             env:
               TZ: ${TIMEZONE}
             securityContext:
