@@ -133,16 +133,16 @@ go2rtc:
       - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/202
       - "ffmpeg:dom2_lq#audio=copy#audio=aac#audio=opus"
     middle_hq:
-      - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/801
+      - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/101
       - "ffmpeg:middle_hq#audio=copy#audio=aac#audio=opus"
     middle_lq:
-      - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/802
+      - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/102
       - "ffmpeg:middle_lq#audio=copy#audio=aac#audio=opus"
     street_hq:
-      - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/901
+      - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/501
       - "ffmpeg:street_hq#audio=copy#audio=aac#audio=opus"
     street_lq:
-      - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/902
+      - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/502
       - "ffmpeg:street_lq#audio=copy#audio=aac#audio=opus"
     garden_hq:
       - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/701
