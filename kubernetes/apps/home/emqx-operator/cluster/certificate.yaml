@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: emqx-tls
+spec:
+  secretName: emqx-tls
+  dnsNames:
+    - emqx.${SECRET_DOMAIN}
+    - emqx.home.arpa
+    - mqtt.${SECRET_DOMAIN}
+    - mqtt.home.arpa
+  ipAddresses:
+    - 192.168.108.10
+  duration: 8760h # 1 year
+  renewBefore: 720h # 30 days
+  issuerRef:
+    kind: ClusterIssuer
+    name: mqtt
