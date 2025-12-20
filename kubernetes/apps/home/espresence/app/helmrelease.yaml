@@ -71,7 +71,7 @@ spec:
     route:
       espresence:
         hostnames:
-          - espresence.${SECRET_DOMAIN}
+          - espresense.${SECRET_DOMAIN}
         parentRefs:
           - name: envoy-internal
             namespace: network
