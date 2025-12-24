@@ -28,9 +28,9 @@ spec:
         max_connections = 1024000
         websocket.mqtt_path = "/mqtt"
         ssl_options {
-          cacertfile = "/mounted/cert/ca.crt"
-          certfile = "/mounted/cert/tls.crt"
-          keyfile = "/mounted/cert/tls.key"
+          cacertfile = "/mounted/prod/cert/ca.crt"
+          certfile = "/mounted/prod/cert/tls.crt"
+          keyfile = "/mounted/prod/cert/tls.key"
         }
       }
       authentication {
@@ -96,9 +96,14 @@ spec:
         - name: emqx-tls
           secret:
             secretName: emqx-tls
+        - name: prod-cert
+          secret:
+            secretName: "${SECRET_DOMAIN/./-}-production-tls"
       extraVolumeMounts:
         - name: emqx-tls
           mountPath: /mounted/cert
+        - name: prod-cert
+          mountpath: /mounted/prod
   listenersServiceTemplate:
     metadata:
       annotations:
