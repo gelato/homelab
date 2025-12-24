@@ -12,7 +12,7 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  path: "./apps/kube-system/reflector/app"
+  path: "./kubernetes/apps/kube-system/reflector/app"
   prune: true
   wait: true
   sourceRef:

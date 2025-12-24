@@ -103,7 +103,7 @@ spec:
         - name: emqx-tls
           mountPath: /mounted/cert
         - name: prod-cert
-          mountpath: /mounted/prod
+          mountPath: /mounted/prod
   listenersServiceTemplate:
     metadata:
       annotations:
