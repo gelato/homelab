@@ -28,9 +28,8 @@ spec:
         max_connections = 1024000
         websocket.mqtt_path = "/mqtt"
         ssl_options {
-          cacertfile = "/mounted/prod/cert/ca.crt"
-          certfile = "/mounted/prod/cert/tls.crt"
-          keyfile = "/mounted/prod/cert/tls.key"
+          certfile = "/mounted/prod/tls.crt"
+          keyfile = "/mounted/prod/tls.key"
         }
       }
       authentication {
