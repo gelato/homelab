@@ -14,20 +14,26 @@ spec:
     - name: envoy-internal
       namespace: network
   rules:
-    - backendRefs:
-      - kind: Service
-        name: emqx-dashboard
-        port: 18083
-        weight: 1
-      matches:
-        - path:
-            type: PathPrefix
-            value: /
-      - kind: Service
-        name: emqx-listeners
-        port: 8084
-        weight: 1
-      matches:
-        - path:
-            type: PathPrefix
-            value: /mqtt
+    # ── Root dash ───────────────────────────────
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+
+    backendRefs:
+    - name: emqx-dashboard
+      kind: Service
+      port: 18083
+      weight: 1
+
+  # ── MQTT (WebSocket / MQTT over WebSocket) ─────────────────
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /mqtt
+
+    backendRefs:
+    - name: emqx-listeners
+      kind: Service
+      port: 8084
+      weight: 1
