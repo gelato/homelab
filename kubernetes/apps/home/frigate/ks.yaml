@@ -16,7 +16,7 @@ spec:
       namespace: kube-system
     - name: longhorn
       namespace: storage
-    - name: mosquitto
+    - name: emqx-cluster
   path: ./kubernetes/apps/home/frigate/app
   prune: true
   sourceRef:

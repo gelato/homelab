@@ -18,6 +18,20 @@ spec:
           handshake_timeout = 5s
         }
       }
+      listeners.ws.default {
+        bind = "0.0.0.0:8083"
+        max_connections = 1024000
+        websocket.mqtt_path = "/mqtt"
+        }
+      listeners.wss.default {
+        bind = "0.0.0.0:8084"
+        max_connections = 1024000
+        websocket.mqtt_path = "/mqtt"
+        ssl_options {
+          certfile = "/mounted/prod/tls.crt"
+          keyfile = "/mounted/prod/tls.key"
+        }
+      }
       authentication {
         backend = "built_in_database"
         mechanism = "password_based"
@@ -81,9 +95,14 @@ spec:
         - name: emqx-tls
           secret:
             secretName: emqx-tls
+        - name: prod-cert
+          secret:
+            secretName: "${SECRET_DOMAIN/./-}-production-tls"
       extraVolumeMounts:
         - name: emqx-tls
           mountPath: /mounted/cert
+        - name: prod-cert
+          mountPath: /mounted/prod
   listenersServiceTemplate:
     metadata:
       annotations:
