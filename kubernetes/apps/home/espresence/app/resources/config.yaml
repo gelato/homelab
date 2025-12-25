@@ -6,10 +6,11 @@ mqtt:
   username: ${MOSQUITTO_MQTT_USERNAME}
   password: ${MOSQUITTO_MQTT_PASSWORD}
   discovery_topic: homeassistant  # Home Assistant MQTT discovery topic prefix (default: homeassistant)
+  ips: true
 
 ips:
   enabled: true
-  
+
 # This gets added to the x,y,z to derive a gps location
 gps:
   latitude: "${SECRET_HOME_LATITUDE}"
@@ -56,13 +57,13 @@ optimization:
 locators:
   nadaraya_watson:
     enabled: true
-    floors: ["first", "second"]
+    floors: ["first"]
     bandwidth: 0.5
     kernel: gaussian
 
   nelder_mead:
     enabled: false
-    floors: ["first", "second"]
+    floors: ["first"]
     weighting:
       algorithm: gaussian
       props:
