@@ -38,8 +38,6 @@ spec:
             image:
               repository: espresense/espresense-companion
               tag: 2.0.4-b98@sha256:3ffada6c8b5419c8cd38a93713d5d8fbac9a4851fad76723b9ccd94caabfd18c
-            # command: ["/bin/sh", "-c"]
-            # args: ["sleep 10000"]
             env:
               TZ: ${TIMEZONE}
             securityContext:
@@ -52,6 +50,24 @@ spec:
                 memory: 150M
               limits:
                 memory: 512M
+          busybox:
+            image:
+              repository: amd64/busybox
+              tag: 1.37@sha256:c4875425e23137607975d87353bea70b0fb7786c0a16e6312994de812d933ad7
+            command: ["/bin/sh", "-c"]
+            args: ["sleep 10000"]
+            env:
+              TZ: ${TIMEZONE}
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 15m
+                memory: 50M
+              limits:
+                memory: 128M
         pod:
           securityContext:
             runAsUser: 568
