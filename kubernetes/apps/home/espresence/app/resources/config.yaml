@@ -152,7 +152,7 @@ nodes:
     floors: ["first"]
   - name: guestroom-server
     room: guestroom
-    point: [2.5, 5.9, 0.2]
+    point: [2.6, 5.9, 0.2]
     floors: ["first"]
   - name: guestroom-vlad
     room: guestroom
