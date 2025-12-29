@@ -131,22 +131,34 @@ floors:
     # Locations of espresense nodes in meters
 nodes:
   - name: kitchen
-    point: [2.3, 3.4]
+    point: [2.3, 3.4, 1.5]
     floors: ["first"]
   - name: dining
-    point: [0.1, 1.4]
+    point: [0.1, 1.4, 0]
     floors: ["first"]
   - name: bedroom
-    point: [7, 0.2]
+    point: [7, 0.2, 0]
     floors: ["first"]
   - name: guestroom
-    point: [6.9, 6.1]
+    point: [6.9, 6.1, 0]
     floors: ["first"]
   - name: bedroom-entry
-    point: [2.6, 2.6]
+    point: [2.6, 2.6, 2.3]
     floors: ["first"]
   - name: guestroom-server
-    point: [2.6, 6.2]
+    point: [2.6, 6.2, 0.2]
+    floors: ["first"]
+  - name: guestroom-vlad
+    point: [7, 3.5, 0]
+    floors: ["first"]
+  - name: bedroom-nes
+    point: [7, 3.2, 0]
+    floors: ["first"]
+  - name: dining-fridge
+    point: [2.3, 1.5, 2]
+    floors: ["first"]
+  - name: bathroom
+    point: [1.1, 7.7, 1.7]
     floors: ["first"]
 
 # Devices to track
