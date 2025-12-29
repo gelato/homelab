@@ -156,7 +156,7 @@ nodes:
     floors: ["first"]
   - name: guestroom-vlad
     room: guestroom
-    point: [7, 3.4, 0]
+    point: [6.9, 4, 0]
     floors: ["first"]
   - name: bedroom-nes
     room: bedroom
