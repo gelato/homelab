@@ -186,7 +186,7 @@ devices:
   - id: "laptop:*"
   - id: "backpack:*"
   - id: "garmin:*"
-  - id: "apple:*"
+  # - id: "apple:*"
 
 # Devices to NOT track
 exclude_devices:
