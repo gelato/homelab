@@ -136,7 +136,7 @@ nodes:
     floors: ["first"]
   - name: dining
     room: dining
-    point: [0.1, 1.4, 0]
+    point: [0.1, 1.8, 0]
     floors: ["first"]
   - name: bedroom
     room: bedroom
@@ -148,11 +148,11 @@ nodes:
     floors: ["first"]
   - name: bedroom-entry
     room: bedroom
-    point: [2.5, 2.1, 2.4]
+    point: [2.5, 2.2, 2.4]
     floors: ["first"]
   - name: guestroom-server
     room: guestroom
-    point: [2.6, 6.2, 0.2]
+    point: [2.5, 5.9, 0.2]
     floors: ["first"]
   - name: guestroom-vlad
     room: guestroom
@@ -160,7 +160,7 @@ nodes:
     floors: ["first"]
   - name: bedroom-nes
     room: bedroom
-    point: [7, 3.3, 0]
+    point: [7, 3.1, 0]
     floors: ["first"]
   - name: dining-fridge
     room: dining
