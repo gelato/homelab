@@ -186,6 +186,7 @@ devices:
   - id: "laptop:*"
   - id: "backpack:*"
   - id: "garmin:*"
+  - id: "known:*"
   # - id: "apple:*"
 
 # Devices to NOT track
