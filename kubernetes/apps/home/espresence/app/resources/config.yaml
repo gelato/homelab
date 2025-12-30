@@ -38,7 +38,7 @@ optimization:
   enabled: true
   interval_secs: 1200
   keep_snapshot_mins: 15   # How long to keep optimization snapshots (default: 5 minutes)
-  optimizer: legacy # Options global_absorption, per_node_absorption, legacy (default: legacy)
+  optimizer: per_node_absorption # Options global_absorption, per_node_absorption, legacy (default: legacy)
   limits:
     absorption_min: 1
     absorption_max: 5
