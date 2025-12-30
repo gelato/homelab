@@ -36,14 +36,14 @@ device_retention: 30d
 
 optimization:
   enabled: true
-  interval_secs: 3600
+  interval_secs: 120
   keep_snapshot_mins: 15   # How long to keep optimization snapshots (default: 5 minutes)
-  optimizer: global_absorption # Options global_absorption, per_node_absorption, legacy (default: legacy)
+  optimizer: per_node_absorption # Options global_absorption, per_node_absorption, legacy (default: legacy)
   limits:
-    absorption_min: 2.5
-    absorption_max: 3.5
-    rx_adj_rssi_min: -5
-    rx_adj_rssi_max: 25
+    absorption_min: 1.5
+    absorption_max: 5.5
+    rx_adj_rssi_min: -1
+    rx_adj_rssi_max: 45
     tx_ref_rssi_min: -80
     tx_ref_rssi_max: -40
   weights:
