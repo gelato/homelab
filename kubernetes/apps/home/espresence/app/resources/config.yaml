@@ -41,11 +41,11 @@ optimization:
   optimizer: per_node_absorption # Options global_absorption, per_node_absorption, legacy (default: legacy)
   limits:
     absorption_min: 1.5
-    absorption_max: 5.5
-    rx_adj_rssi_min: -1
-    rx_adj_rssi_max: 45
-    tx_ref_rssi_min: -80
-    tx_ref_rssi_max: -40
+    absorption_max: 5
+    rx_adj_rssi_min: -15
+    rx_adj_rssi_max: 20
+    tx_ref_rssi_min: -70
+    tx_ref_rssi_max: -30
   weights:
     # Weighting factor for Pearson Correlation in best scenario scoring (default: 0.5)
     correlation: 0.5
