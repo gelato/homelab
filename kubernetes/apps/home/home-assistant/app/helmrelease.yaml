@@ -113,19 +113,19 @@ spec:
           - backendRefs:
               - identifier: main
                 port: *httpPort
-      # main:
-      #   annotations:
-      #     external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
-      #   hostnames:
-      #     - home.${SECRET_DOMAIN}
-      #   parentRefs:
-      #     - name: envoy-external
-      #       namespace: network
-      #       sectionName: https
-      #   rules:
-      #     - backendRefs:
-      #         - identifier: main
-      #           port: *httpPort
+      main:
+        annotations:
+          external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
+        hostnames:
+          - home.${SECRET_DOMAIN}
+        parentRefs:
+          - name: envoy-external
+            namespace: network
+            sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: main
+                port: *httpPort
 
     persistence:
       config:
