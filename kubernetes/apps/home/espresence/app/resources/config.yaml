@@ -162,6 +162,10 @@ nodes:
     room: guestroom
     point: [6.9, 4, 0]
     floors: ["first"]
+  - name: guestroom_entry
+    room: guestroom
+    point: [3.8, 3.5, 1.5]
+    floors: ["first"]
   - name: bedroom-nes
     room: bedroom
     point: [7, 3.1, 0.3]
