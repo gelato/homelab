@@ -168,7 +168,7 @@ nodes:
     floors: ["first"]
   - name: bedroom_closet
     room: bedroom
-    point: [2.9, 0.3, 0.4]
+    point: [2.9, 0.3, 1.5]
     floors: ["first"]
   - name: dining-fridge
     room: dining
