@@ -26,9 +26,9 @@ map:
   wall_opacity: 0.35   # Optional wall opacity, if not set defaults to 0.35
 
 # How long before device considered stale
-timeout: 30
+timeout: 60
 # How long before device is considered away
-away_timeout: 120
+away_timeout: 180
 
 # Retain devices for this long since last seen (duration string)
 # Examples: "30d", "720h", "2592000s"
@@ -168,7 +168,7 @@ nodes:
     floors: ["first"]
   - name: bedroom-nes
     room: bedroom
-    point: [7, 3.1, 0.3]
+    point: [7, 3.1, 0.5]
     floors: ["first"]
   - name: bedroom_closet
     room: bedroom
