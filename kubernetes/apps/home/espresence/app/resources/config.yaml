@@ -176,7 +176,7 @@ nodes:
     floors: ["first"]
   - name: dining-fridge
     room: dining
-    point: [2, 1.5, 1.8]
+    point: [2, 2.2, 1.8]
     floors: ["first"]
   - name: dining_tv
     room: dining
