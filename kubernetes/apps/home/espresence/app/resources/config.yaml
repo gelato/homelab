@@ -166,7 +166,7 @@ nodes:
     room: bedroom
     point: [7, 3.1, 0.3]
     floors: ["first"]
-  - name: bedroom-closet
+  - name: bedroom_closet
     room: bedroom
     point: [2.9, 0.3, 0.4]
     floors: ["first"]
@@ -174,7 +174,7 @@ nodes:
     room: dining
     point: [2, 1.5, 1.8]
     floors: ["first"]
-  - name: dining-tv
+  - name: dining_tv
     room: dining
     point: [1, 1, 1.9]
     floors: ["first"]
