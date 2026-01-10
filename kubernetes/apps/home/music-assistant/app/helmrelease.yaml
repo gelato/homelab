@@ -83,7 +83,7 @@ spec:
         advancedMounts:
           music-assistant:
             app:
-              - path: /usr/local/lib/python3.12/site-packages/hass_client
+              - path: /app/venv/lib/python3.13/site-packages/hass_client
       nfs-media:
         type: nfs
         server: tower.local
