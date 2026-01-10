@@ -79,11 +79,11 @@ spec:
             app:
               - path: /data
       addons-hass:
-        existingClaim: music-assistant-addons-hass
+        existingClaim: music-assistant-cache
         advancedMounts:
           music-assistant:
             app:
-              - path: /app/venv/lib/python3.13/site-packages/hass_client
+              - path: /cache
       nfs-media:
         type: nfs
         server: tower.local

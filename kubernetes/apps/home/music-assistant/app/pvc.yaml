@@ -14,7 +14,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: music-assistant-addons-hass
+  name: music-assistant-cache
 spec:
   accessModes: ["ReadWriteOnce"]
   resources:
