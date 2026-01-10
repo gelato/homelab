@@ -29,7 +29,7 @@ spec:
           app:
             image:
               repository: ghcr.io/music-assistant/server
-              tag: 2.7.3
+              tag: 2.6.3
             probes:
               liveness:
                 enabled: true
@@ -83,7 +83,7 @@ spec:
         advancedMounts:
           music-assistant:
             app:
-              - path: /app/venv/lib/python3.13/site-packages/hass_client
+              - path: /usr/local/lib/python3.12/site-packages/hass_client
       nfs-media:
         type: nfs
         server: tower.local
