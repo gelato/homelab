@@ -5,7 +5,7 @@ kind: EMQX
 metadata:
   name: emqx
 spec:
-  image: public.ecr.aws/emqx/emqx:5.8.5
+  image: public.ecr.aws/emqx/emqx:5.8.9
   config:
     data: |
       listeners.ssl.default {
@@ -71,7 +71,7 @@ spec:
             name: emqx-secret
       extraContainers:
         - name: init-mqtt
-          image: docker.io/library/python:3.13-alpine
+          image: docker.io/library/python:3.14-alpine
           env:
             - name: X_EMQX_ADDRESS
               value: emqx-dashboard.home.svc.cluster.local:18083
