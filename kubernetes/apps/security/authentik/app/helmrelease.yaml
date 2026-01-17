@@ -34,18 +34,19 @@ spec:
   values:
     global:
       deploymentAnnotations:
-        secret.reloader.stakater.com/reload: &secret authentik-secret
+        secret.reloader.stakater.com/reload: &secret authentik-secret,authentik-s3-envs,authentik-geoip
+        configmap.reloader.stakater.com/reload: authentik-custom-assets
       image:
         repository: ghcr.io/goauthentik/server
         tag: 2025.10.3
       fullnameOverride: authentik
 
     authentik:
+      error_reporting:
+        enabled: false
+      disable_startup_analytics: true
       log_level: info
       secret_key: "${SECRET_AUTHENTIK_SECRET_KEY}"
-      error_reporting:
-        enabled: true
-        environment: "ark"
       outposts:
         container_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
       postgresql:
@@ -61,6 +62,22 @@ spec:
         use_tls: false
         from: "Authentik <authentic@skynerv.com>"
 
+    geoip:
+      enabled: true
+      image:
+        repository: ghcr.io/maxmind/geoipupdate
+        tag: v7.1.1@sha256:faecdca22579730ab0b7dea5aa9af350bb3c93cb9d39845c173639ead30346d2
+      accountId: "1"
+      licenseKey: stub
+      env:
+        - name: GEOIPUPDATE_HOST
+          value: http://geoip-updates.geoip
+      containerSecurityContext:
+        readOnlyRootFilesystem: true
+      volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+
     server:
       replicas: 1
       initContainers:
@@ -73,6 +90,9 @@ spec:
         enabled: true
         minAvailable: 1
         maxUnavailable: 1
+
+      containerSecurityContext:
+        readOnlyRootFilesystem: true
 
       route:
         main:
@@ -95,6 +115,7 @@ spec:
       metrics:
         serviceMonitor:
           enabled: true
+
       resources:
         requests:
           cpu: 100m
@@ -102,16 +123,35 @@ spec:
         limits:
           memory: 4Gi
 
+      volumes:
+        - name: custom-assets
+          configMap:
+            name: authentik-custom-assets
+            
+      volumeMounts:
+        - name: custom-assets
+          mountPath: /web/dist/custom.css
+          subPath: custom.css
+
     worker:
       replicas: 1
       serviceAccount:
         create: true
+      containerSecurityContext:
+        readOnlyRootFilesystem: true
       resources:
         requests:
           cpu: 50m
           memory: 512Mi
         limits:
           memory: 3Gi
+      volumes:
+        - name: server-cert
+          secret:
+            secretName: "${SECRET_DOMAIN/./-}-production-tls"
+      volumeMounts:
+        - name: server-cert
+          mountPath: "/certs/${SECRET_DOMAIN/./-}-production-tls"
 
     prometheus:
       rules:
