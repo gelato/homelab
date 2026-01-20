@@ -52,6 +52,8 @@ spec:
 
     route:
       webfinger:
+        annotations:
+            external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
         parentRefs:
           - namespace: envoy-external
             name: envoy-external
