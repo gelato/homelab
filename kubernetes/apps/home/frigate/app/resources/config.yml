@@ -52,6 +52,13 @@ objects:
       min_score: 0.6
       threshold: 0.8
 
+ffmpeg:
+  hwaccel_args: preset-intel-qsv-h264
+  input_args: preset-rtsp-restream
+  output_args:
+    detect: -threads 2 -f rawvideo -pix_fmt yuv420p
+    record: preset-record-generic
+
 record:
   enabled: True
   sync_recordings: True
