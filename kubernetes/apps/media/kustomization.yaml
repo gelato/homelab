@@ -17,3 +17,4 @@ resources:
   - ./radarr/ks.yaml
   - ./sonarr/ks.yaml
   - ./emby/ks.yaml
+  - ./jellyseerr/ks.yaml
