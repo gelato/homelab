@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-upload
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 350Gi
+  storageClassName: longhorn-ssd
+  volumeName: pvc-0a1ce33a-03e6-4e7a-822c-d09d9d2eb685
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-ml-cache
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: longhorn-fast
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-thumbnails
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 3Gi
+  storageClassName: longhorn-fast

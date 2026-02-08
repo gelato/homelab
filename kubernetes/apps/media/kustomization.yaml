@@ -18,3 +18,4 @@ resources:
   - ./sonarr/ks.yaml
   - ./emby/ks.yaml
   - ./jellyseerr/ks.yaml
+  - ./immich/ks.yaml
