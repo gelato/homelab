@@ -14,5 +14,6 @@ resources:
   - ./loki/ks.yaml
   - ./promtail/ks.yaml
   - ./grafana/ks.yaml
+  - ./goldilocks/ks.yaml
   # Exporters
   - ./exporters
