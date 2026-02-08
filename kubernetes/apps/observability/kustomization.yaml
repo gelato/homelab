@@ -12,5 +12,6 @@ resources:
   - ./kube-prometheus-stack/ks.yaml
   - ./kube-state-metrics/ks.yaml
   - ./loki/ks.yaml
+  - ./promtail/ks.yaml
   # Exporters
   - ./exporters
