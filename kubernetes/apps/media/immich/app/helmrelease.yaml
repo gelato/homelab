@@ -190,10 +190,10 @@ spec:
               repository: ghcr.io/immich-app/immich-machine-learning
               tag: v2.3.1
             env:
-              MACHINE_LEARNING_PRELOAD__CLIP__TEXTUAL: XLM-Roberta-Large-Vit-B-16Plus
-              MACHINE_LEARNING_PRELOAD__CLIP__VISUAL: XLM-Roberta-Large-Vit-B-16Plus
-              MACHINE_LEARNING_PRELOAD__FACIAL_RECOGNITION__RECOGNITION: buffalo_l
-              MACHINE_LEARNING_PRELOAD__FACIAL_RECOGNITION__DETECTION: buffalo_l
+              # MACHINE_LEARNING_PRELOAD__CLIP__TEXTUAL: XLM-Roberta-Large-Vit-B-16Plus
+              # MACHINE_LEARNING_PRELOAD__CLIP__VISUAL: XLM-Roberta-Large-Vit-B-16Plus
+              # MACHINE_LEARNING_PRELOAD__FACIAL_RECOGNITION__RECOGNITION: buffalo_l
+              # MACHINE_LEARNING_PRELOAD__FACIAL_RECOGNITION__DETECTION: buffalo_l
               MPLCONFIGDIR: /.config/matplotlib
               IMMICH_MEDIA_LOCATION: *mediaLocation
               THUMB_LOCATION: *thumbLocation
