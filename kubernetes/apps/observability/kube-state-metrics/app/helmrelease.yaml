@@ -29,3 +29,10 @@ spec:
             replacement: $1
             sourceLabels: ["__meta_kubernetes_pod_node_name"]
             targetLabel: kubernetes_node
+    resources:
+      limits:
+        cpu: 250m
+        memory: 512Mi
+      requests:
+        cpu: 100m
+        memory: 64Mi
