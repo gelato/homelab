@@ -240,11 +240,11 @@ spec:
     #   - vonage-status-panel
     serviceMonitor:
       enabled: true
-    ingress:
-      enabled: true
-      ingressClassName: "internal"
-      hosts:
-        - &host grafana.${SECRET_DOMAIN}
-      tls:
-        - hosts:
-            - *host
+    route:
+      main:
+        enabled: true
+        hostnames:
+          - "{{ .Release.Name }}.${SECRET_DOMAIN}"
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
