@@ -156,6 +156,13 @@ spec:
         sizeLimit: 30Gi
         globalMounts:
           - path: /dev/shm
+      usb:
+        enabled: true
+        type: hostPath
+        hostPath: /dev/bus/usb
+        hostPathType: Directory
+        globalMounts:
+          - path: /dev/bus/usb
       dri:
         enabled: true
         type: hostPath
