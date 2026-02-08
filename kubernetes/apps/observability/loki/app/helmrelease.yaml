@@ -51,6 +51,10 @@ spec:
         max_label_value_length: 20480
         max_label_name_length: 10240
         max_label_names_per_series: 300
+        allow_structured_metadata: true
+        volume_enabled: true
+      ruler:
+        enable_api: true
       storage:
         type: filesystem
       schemaConfig:
@@ -62,6 +66,8 @@ spec:
             index:
               prefix: loki_index_
               period: 24h
+      pattern_ingester:
+        enabled: true
       structuredConfig:
         ruler:
           enable_api: true
@@ -78,13 +84,29 @@ spec:
         enabled: true
         storageClass: longhorn-fast
         size: 50Gi
-    gateway:
-      replicas: 0
     backend:
       replicas: 0
     read:
       replicas: 0
     write:
+      replicas: 0
+    ingester:
+      replicas: 0
+    querier:
+      replicas: 0
+    queryFrontend:
+      replicas: 0
+    queryScheduler:
+      replicas: 0
+    distributor:
+      replicas: 0
+    compactor:
+      replicas: 0
+    indexGateway:
+      replicas: 0
+    bloomCompactor:
+      replicas: 0
+    bloomGateway:
       replicas: 0
     chunksCache:
       enabled: false
