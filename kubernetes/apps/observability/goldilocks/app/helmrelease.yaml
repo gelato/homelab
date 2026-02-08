@@ -49,21 +49,19 @@ spec:
     dashboard:
       enabled: true
       replicaCount: 1
-      # Container names to exclude from displaying in the Goldilocks dashboard
-      ingress:
+      httpRoute:
         enabled: true
-        ingressClassName: internal
-        annotations:
-          nginx.ingress.kubernetes.io/whitelist-source-range: |
-            10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
-        hosts:
-          - host: &host "goldilocks.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                type: Prefix
-        tls:
-          - hosts:
-              - *host
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+            sectionName: https
+        hostnames:
+          - goldilocks.${SECRET_DOMAIN}
+        matches:
+          - path:
+              type: PathPrefix
+              value: /
+
       resources:
         requests:
           cpu: 15m
