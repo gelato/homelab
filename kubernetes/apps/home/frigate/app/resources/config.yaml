@@ -15,7 +15,7 @@ detectors:
     device: usb
 
 database:
-  path: /data/frigate.db
+  path: /config/frigate.db
 
 tls:
   enabled: False
