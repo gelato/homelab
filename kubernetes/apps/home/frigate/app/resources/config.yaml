@@ -1,12 +1,12 @@
 # yaml-language-server: $schema=https://frigate.skynerv.com/api/config/schema.json
 mqtt:
-  enabled: True
+  enabled: true
   host: emqx-listeners
   port: 1883
   topic_prefix: frigate
   client_id: frigate
-  user: "{FRIGATE_MQTT_USERNAME}"
-  password: "{FRIGATE_MQTT_PASSWORD}"
+  user: '{FRIGATE_MQTT_USERNAME}'
+  password: '{FRIGATE_MQTT_PASSWORD}'
   stats_interval: 30
 
 detectors:
@@ -18,10 +18,10 @@ database:
   path: /config/frigate.db
 
 tls:
-  enabled: False
+  enabled: false
 
 audio:
-  enabled: True
+  enabled: true
   listen:
     - bark
     - fire_alarm
@@ -60,8 +60,8 @@ ffmpeg:
     record: preset-record-generic
 
 record:
-  enabled: True
-  sync_recordings: True
+  enabled: true
+  sync_recordings: true
   retain:
     days: 3
     mode: all
@@ -81,11 +81,11 @@ record:
       mode: active_objects
 
 snapshots:
-  enabled: True
-  clean_copy: False
-  timestamp: False
-  bounding_box: True
-  crop: False
+  enabled: true
+  clean_copy: false
+  timestamp: false
+  bounding_box: true
+  crop: false
   retain:
     default: 10
     objects:
@@ -94,7 +94,7 @@ snapshots:
   quality: 90
 
 semantic_search:
-  enabled: True
+  enabled: true
 
 # genai:
 #   # Optional: Enable AI description generation (default: shown below)
@@ -117,52 +117,52 @@ go2rtc:
   streams:
     gates_hq:
       - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/301
-      - "ffmpeg:gates_hq#audio=copy#audio=aac#audio=opus"
+      - ffmpeg:gates_hq#audio=copy#audio=aac#audio=opus
     gates_lq:
       - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/302
-      - "ffmpeg:gates_lq#audio=copy#audio=aac#audio=opus"
+      - ffmpeg:gates_lq#audio=copy#audio=aac#audio=opus
     door_hq:
       - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/601
-      - "ffmpeg:door_hq#audio=copy#audio=aac#audio=opus"
+      - ffmpeg:door_hq#audio=copy#audio=aac#audio=opus
     door_lq:
       - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/602
-      - "ffmpeg:door_lq#audio=copy#audio=aac#audio=opus"
+      - ffmpeg:door_lq#audio=copy#audio=aac#audio=opus
     dvor_gates_hq:
       - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/401
-      - "ffmpeg:dvor_gates_hq#audio=copy#audio=aac#audio=opus"
+      - ffmpeg:dvor_gates_hq#audio=copy#audio=aac#audio=opus
     dvor_gates_lq:
       - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/402
-      - "ffmpeg:dvor_gates_lq#audio=copy#audio=aac#audio=opus"
+      - ffmpeg:dvor_gates_lq#audio=copy#audio=aac#audio=opus
     dom2_hq:
       - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/201
-      - "ffmpeg:dom2_hq#audio=copy#audio=aac#audio=opus"
+      - ffmpeg:dom2_hq#audio=copy#audio=aac#audio=opus
     dom2_lq:
       - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/202
-      - "ffmpeg:dom2_lq#audio=copy#audio=aac#audio=opus"
+      - ffmpeg:dom2_lq#audio=copy#audio=aac#audio=opus
     middle_hq:
       - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/101
-      - "ffmpeg:middle_hq#audio=copy#audio=aac#audio=opus"
+      - ffmpeg:middle_hq#audio=copy#audio=aac#audio=opus
     middle_lq:
       - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/102
-      - "ffmpeg:middle_lq#audio=copy#audio=aac#audio=opus"
+      - ffmpeg:middle_lq#audio=copy#audio=aac#audio=opus
     street_hq:
       - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/501
-      - "ffmpeg:street_hq#audio=copy#audio=aac#audio=opus"
+      - ffmpeg:street_hq#audio=copy#audio=aac#audio=opus
     street_lq:
       - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/502
-      - "ffmpeg:street_lq#audio=copy#audio=aac#audio=opus"
+      - ffmpeg:street_lq#audio=copy#audio=aac#audio=opus
     garden_hq:
       - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/701
-      - "ffmpeg:garden_hq#audio=copy#audio=aac#audio=opus"
+      - ffmpeg:garden_hq#audio=copy#audio=aac#audio=opus
     garden_lq:
       - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@nvr.local:554/Streaming/Channels/702
-      - "ffmpeg:garden_lq#audio=copy#audio=aac#audio=opus"
+      - ffmpeg:garden_lq#audio=copy#audio=aac#audio=opus
   webrtc:
     candidates:
       - 192.168.108.55:8555
 cameras:
   gates:
-    enabled: True
+    enabled: true
     ffmpeg:
       inputs:
         - path: rtsp://localhost:8554/gates_hq
@@ -176,12 +176,12 @@ cameras:
       width: 848
       height: 480
       fps: 5
-      enabled: True
+      enabled: true
     live:
       streams:
         main_stream: gates_hq
         sub_stream: gates_hq
-    webui_url: ""
+    webui_url: ''
     motion:
       mask:
         - 1,0.811,0.947,0.76,0.812,0.55,0.84,0.39,0.808,0.304,0.838,0.097,0.876,0,1,0
@@ -212,7 +212,8 @@ cameras:
         objects:
           - person
       sidewalk:
-        coordinates: 0.258,0.994,0.479,0.999,0.548,0.866,0.493,0.699,0.62,0.44,0.649,0.437,0.697,0.356,0.705,0.334,0.772,0.124,0.793,0.113,0.826,0.153,0.837,0.095,0.87,0,0.722,0.002,0.607,0.141,0.577,0.174,0.261,0.599
+        coordinates:
+          0.258,0.994,0.479,0.999,0.548,0.866,0.493,0.699,0.62,0.44,0.649,0.437,0.697,0.356,0.705,0.334,0.772,0.124,0.793,0.113,0.826,0.153,0.837,0.095,0.87,0,0.722,0.002,0.607,0.141,0.577,0.174,0.261,0.599
         inertia: 5
         loitering_time: 3
         objects:
@@ -230,17 +231,17 @@ cameras:
           - guests
           - inside_gates
     mqtt:
-      enabled: True
-      timestamp: True
-      bounding_box: True
-      crop: False
+      enabled: true
+      timestamp: true
+      bounding_box: true
+      crop: false
       height: 500
       quality: 100
     birdseye:
       order: 0
 
   door:
-    enabled: True
+    enabled: true
     ffmpeg:
       inputs:
         - path: rtsp://localhost:8554/door_hq
@@ -254,12 +255,12 @@ cameras:
       width: 848
       height: 480
       fps: 5
-      enabled: True
+      enabled: true
     live:
       streams:
         main_stream: door_hq
         sub_stream: door_hq
-    webui_url: "https://192.168.108.104/"
+    webui_url: https://192.168.108.104/
     motion:
       mask:
         - 0.002,0.468,0.32,0.566,0.37,0.46,0.383,0.413,0.474,0.088,0.744,0.109,0.747,0.011,0.799,0.009,0.87,0.6,0.859,0.604,0.838,0.871,0.739,0.852,0.736,0.893,0.698,0.889,0.678,1,1,1,1,0,0,0
@@ -315,17 +316,17 @@ cameras:
           - parkovka
           - sad
     mqtt:
-      enabled: True
-      timestamp: False
-      bounding_box: True
-      crop: True
+      enabled: true
+      timestamp: false
+      bounding_box: true
+      crop: true
       height: 500
       quality: 100
     birdseye:
       order: 1
 
   dvor_gates:
-    enabled: True
+    enabled: true
     ffmpeg:
       inputs:
         - path: rtsp://localhost:8554/dvor_gates_hq
@@ -339,12 +340,12 @@ cameras:
       width: 848
       height: 480
       fps: 5
-      enabled: True
+      enabled: true
     live:
       streams:
         main_stream: dvor_gates_hq
         sub_stream: dvor_gates_hq
-    webui_url: "https://192.168.108.210/"
+    webui_url: https://192.168.108.210/
     motion:
       mask:
         - 0.643,0.507,0.729,1,1,1,0.998,0.521,1,0.163,0.876,0.061,0.778,0,0.594,0,0.594,0.077,0.637,0.134
@@ -358,7 +359,8 @@ cameras:
           - person
           - car
       before_gates_2:
-        coordinates: 0.396,0.269,0.601,0.257,0.585,0.028,0.455,0.035,0.409,0.045,0.416,0.167
+        coordinates:
+          0.396,0.269,0.601,0.257,0.585,0.028,0.455,0.035,0.409,0.045,0.416,0.167
         inertia: 3
         loitering_time: 1
         objects:
@@ -403,17 +405,17 @@ cameras:
           - driveway
           - driveway_2
     mqtt:
-      enabled: True
-      timestamp: False
-      bounding_box: True
-      crop: True
+      enabled: true
+      timestamp: false
+      bounding_box: true
+      crop: true
       height: 500
       quality: 100
     birdseye:
       order: 2
 
   dom2:
-    enabled: True
+    enabled: true
     ffmpeg:
       inputs:
         - path: rtsp://localhost:8554/dom2_hq
@@ -427,12 +429,12 @@ cameras:
       width: 736
       height: 416
       fps: 5
-      enabled: True
+      enabled: true
     live:
       streams:
         main_stream: dom2_hq
         sub_stream: dom2_lq
-    webui_url: "https://192.168.108.215/"
+    webui_url: https://192.168.108.215/
     motion:
       mask:
         - 0.049,1,0.001,0.996,0.001,0.001,0.996,0.003,0.999,0.996,0.648,1,0.62,0.849,0.872,0.761,0.868,0.61,0.581,0.635,0.578,0.463,0.532,0.47,0.517,0.51,0.526,0.698,0.359,0.718,0.215,0.738,0.057,0.928
@@ -466,17 +468,17 @@ cameras:
           - dom2_tropinka
           - lavka
     mqtt:
-      enabled: True
-      timestamp: False
-      bounding_box: True
-      crop: True
+      enabled: true
+      timestamp: false
+      bounding_box: true
+      crop: true
       height: 500
       quality: 100
     birdseye:
       order: 3
 
   street:
-    enabled: True
+    enabled: true
     ffmpeg:
       inputs:
         - path: rtsp://localhost:8554/street_hq
@@ -490,7 +492,7 @@ cameras:
       width: 848
       height: 480
       fps: 5
-      enabled: True
+      enabled: true
     live:
       streams:
         main_stream: street_hq
@@ -525,17 +527,17 @@ cameras:
           - za_zaborom
           - pod_oknami
     mqtt:
-      enabled: True
-      timestamp: False
-      bounding_box: True
-      crop: True
+      enabled: true
+      timestamp: false
+      bounding_box: true
+      crop: true
       height: 500
       quality: 100
     birdseye:
       order: 4
 
   middle:
-    enabled: True
+    enabled: true
     ffmpeg:
       inputs:
         - path: rtsp://localhost:8554/middle_hq
@@ -549,7 +551,7 @@ cameras:
       width: 848
       height: 480
       fps: 5
-      enabled: True
+      enabled: true
     live:
       streams:
         main_stream: middle_hq
@@ -560,7 +562,8 @@ cameras:
         - 0.341,0.455,0.409,0.412,0.487,0.418,0.62,0.549,0.614,0.99,0.692,0.99,0.807,0.836,0.851,0.73,0.905,0.547,0.919,0.499,0.998,0.497,0.996,0.003,0.342,0.004
     zones:
       deepwalk:
-        coordinates: 0.005,0.563,0.042,0.561,0.046,0.606,0.101,0.811,0.184,0.994,0.001,0.997
+        coordinates:
+          0.005,0.563,0.042,0.561,0.046,0.606,0.101,0.811,0.184,0.994,0.001,0.997
         inertia: 2
         objects:
           - person
@@ -571,7 +574,8 @@ cameras:
         objects:
           - person
       garden_entrance:
-        coordinates: 0.343,0.988,0.341,0.47,0.412,0.427,0.488,0.428,0.617,0.56,0.606,0.992
+        coordinates:
+          0.343,0.988,0.341,0.47,0.412,0.427,0.488,0.428,0.617,0.56,0.606,0.992
         inertia: 2
         objects:
           - person
@@ -591,19 +595,19 @@ cameras:
           - near_doghouse
           - garden_entrance
           - doghouse
-    webui_url: ""
+    webui_url: ''
     mqtt:
-      enabled: True
-      timestamp: True
-      bounding_box: True
-      crop: False
+      enabled: true
+      timestamp: true
+      bounding_box: true
+      crop: false
       height: 500
       quality: 100
     birdseye:
       order: 6
 
   garden:
-    enabled: True
+    enabled: true
     ffmpeg:
       inputs:
         - path: rtsp://localhost:8554/garden_hq
@@ -617,7 +621,7 @@ cameras:
       width: 1280
       height: 720
       fps: 5
-      enabled: True
+      enabled: true
     live:
       streams:
         main_stream: garden_hq
@@ -629,7 +633,8 @@ cameras:
         - 0.61,0.25,0.571,0.003,0.995,0.006,0.995,0.989,0.898,0.989,0.95,0.526,0.787,0.192
     zones:
       garden_zone:
-        coordinates: 0.163,0.99,0.892,0.992,0.946,0.525,0.894,0.409,0.782,0.196,0.609,0.26,0.631,0.401,0.691,0.402,0.668,0.479,0.676,0.598,0.734,0.698,0.75,0.841,0.639,0.923,0.57,0.859,0.502,0.869,0.438,0.785,0.416,0.496,0.503,0.468,0.487,0.333,0.394,0.347,0.376,0.533,0.212,0.559,0.136,0.752
+        coordinates:
+          0.163,0.99,0.892,0.992,0.946,0.525,0.894,0.409,0.782,0.196,0.609,0.26,0.631,0.401,0.691,0.402,0.668,0.479,0.676,0.598,0.734,0.698,0.75,0.841,0.639,0.923,0.57,0.859,0.502,0.869,0.438,0.785,0.416,0.496,0.503,0.468,0.487,0.333,0.394,0.347,0.376,0.533,0.212,0.559,0.136,0.752
         inertia: 2
         objects:
           - person
@@ -641,12 +646,12 @@ cameras:
           - dog
         required_zones:
           - garden_zone
-    webui_url: ""
+    webui_url: ''
     mqtt:
-      enabled: True
-      timestamp: True
-      bounding_box: True
-      crop: False
+      enabled: true
+      timestamp: true
+      bounding_box: true
+      crop: false
       height: 500
       quality: 100
     birdseye:
@@ -656,7 +661,7 @@ ui:
   time_format: browser
   date_style: short
   time_style: medium
-  strftime_fmt: "%Y/%m/%d %H:%M"
+  strftime_fmt: '%Y/%m/%d %H:%M'
 
 telemetry:
   network_interfaces:
@@ -667,10 +672,10 @@ telemetry:
     - wl
     - lo
   stats:
-    amd_gpu_stats: False
-    intel_gpu_stats: True
-    network_bandwidth: True
-  version_check: True
+    amd_gpu_stats: false
+    intel_gpu_stats: true
+    network_bandwidth: true
+  version_check: true
 
 camera_groups:
   outside:
@@ -683,3 +688,6 @@ camera_groups:
       - middle
     icon: LuCar
     order: 0
+detect:
+  enabled: true
+version: 0.16-0
