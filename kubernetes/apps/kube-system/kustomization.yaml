@@ -17,3 +17,4 @@ resources:
   - ./node-feature-discovery/ks.yaml
   - ./intel-gpu-resource-driver/ks.yaml
   - ./reflector/ks.yaml
+  - ./descheduler/ks.yaml
