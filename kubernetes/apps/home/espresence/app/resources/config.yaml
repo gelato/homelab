@@ -203,8 +203,11 @@ devices:
   - id: "backpack:*"
   - id: "garmin:*"
   - id: "known:*"
+  - id: "5100250502b8"
+  - id: "5100250502a5"
   # - id: "apple:*"
 
 # Devices to NOT track
 exclude_devices:
   - id: "iBeacon:e5ca1ade-f007-ba11-0000-000000000000-*" # These are junk, we alias them to node:*
+  - id: "Govee*"
