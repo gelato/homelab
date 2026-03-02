@@ -36,6 +36,11 @@ spec:
 
     replicaCount: 1
 
+    image:
+      repository: ollama/ollama
+      pullPolicy: IfNotPresent
+      tag: "0.17.5"
+
     ollama:
       models:
         pull:
