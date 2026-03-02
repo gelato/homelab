@@ -6,4 +6,4 @@ metadata:
   name: ollama
 spec:
   interval: 2h
-  url: https://otwld.github.io/ollama-helm/
+  url: https://helm.otwld.com/
