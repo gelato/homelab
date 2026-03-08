@@ -19,7 +19,6 @@ spec:
   values:
     replicaCount: 1
     image:
-      # FIXME check the app name
       pullPolicy: IfNotPresent
       tag: "v0.39.1-rc.1"
     adminUser:
