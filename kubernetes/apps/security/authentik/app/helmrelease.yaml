@@ -34,7 +34,7 @@ spec:
   values:
     global:
       deploymentAnnotations:
-        secret.reloader.stakater.com/reload: &secret authentik-secret,authentik-s3-envs,authentik-geoip
+        secret.reloader.stakater.com/reload: authentik-secret,authentik-s3-envs,authentik-geoip
         configmap.reloader.stakater.com/reload: authentik-custom-assets
       image:
         repository: ghcr.io/goauthentik/server
@@ -74,9 +74,6 @@ spec:
           value: http://geoip-updates.geoip
       containerSecurityContext:
         readOnlyRootFilesystem: true
-      volumeMounts:
-        - name: tmp
-          mountPath: /tmp
 
     server:
       replicas: 1
@@ -85,7 +82,7 @@ spec:
           image: ghcr.io/onedr0p/postgres-init:17.4
           envFrom:
             - secretRef:
-                name: *secret
+                name: authentik-secret
       pdb:
         enabled: true
         minAvailable: 1
@@ -127,7 +124,7 @@ spec:
         - name: custom-assets
           configMap:
             name: authentik-custom-assets
-            
+
       volumeMounts:
         - name: custom-assets
           mountPath: /web/dist/custom.css
