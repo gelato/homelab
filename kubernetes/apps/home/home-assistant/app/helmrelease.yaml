@@ -73,7 +73,7 @@ spec:
               whenUnsatisfiable: ScheduleAnyway
               labelSelector:
                 matchLabels:
-                  google.feature.node.kubernetes.io/coral: true
+                  google.feature.node.kubernetes.io/coral: "true"
           # nodeSelector:
           #   sonoff.feature.node.kubernetes.io/dongle-e: "true"
     service:
