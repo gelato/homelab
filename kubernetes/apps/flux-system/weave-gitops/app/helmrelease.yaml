@@ -20,7 +20,7 @@ spec:
     replicaCount: 1
     image:
       # FIXME check the app name
-      repository: ghcr.io/weaveworks/wego-app
+      repository: ghcr.io/weaveworks/weave-gitops
       pullPolicy: IfNotPresent
       tag: "v0.39.1-rc.1"
     adminUser:
