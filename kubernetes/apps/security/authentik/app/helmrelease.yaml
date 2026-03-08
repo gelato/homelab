@@ -34,7 +34,7 @@ spec:
   values:
     global:
       deploymentAnnotations:
-        secret.reloader.stakater.com/reload: authentik-secret,authentik-s3-envs,authentik-geoip
+        secret.reloader.stakater.com/reload: &secret authentik-secret,authentik-s3-envs,authentik-geoip
         configmap.reloader.stakater.com/reload: authentik-custom-assets
       image:
         repository: ghcr.io/goauthentik/server
@@ -74,6 +74,12 @@ spec:
           value: http://geoip-updates.geoip
       containerSecurityContext:
         readOnlyRootFilesystem: true
+      volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+        - name: tmp
+          emptyDir: {}
 
     server:
       replicas: 1
