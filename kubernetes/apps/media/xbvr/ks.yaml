@@ -7,8 +7,6 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  dependsOn:
-    - name: longhorn
   path: ./kubernetes/apps/media/xbvr/app
   prune: true
   sourceRef:
