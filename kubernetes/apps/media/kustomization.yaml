@@ -19,3 +19,4 @@ resources:
   - ./emby/ks.yaml
   - ./jellyseerr/ks.yaml
   - ./immich/ks.yaml
+  - ./xbvr/ks.yaml

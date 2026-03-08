@@ -1,0 +1,13 @@
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: xbvr-data
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: longhorn-fast
+  volumename: pvc-d7cb9924-d2e8-4e05-aae8-b9919390029a
