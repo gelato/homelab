@@ -17,6 +17,7 @@ spec:
     remediation:
       retries: 3
   values:
+    replicaCount: 1
     image:
       # FIXME check the app name
       repository: ghcr.io/weaveworks/wego-app
