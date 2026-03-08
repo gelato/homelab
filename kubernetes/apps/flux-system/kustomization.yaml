@@ -12,4 +12,4 @@ resources:
   - ./flux-operator/ks.yaml
   - ./weave-gitops/ks.yaml
   - ./capacitor/ks.yaml
-  - ./capacitor-next/ks.yaml
+  # - ./capacitor-next/ks.yaml
