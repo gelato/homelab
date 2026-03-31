@@ -38,7 +38,7 @@ spec:
         configmap.reloader.stakater.com/reload: authentik-custom-assets
       image:
         repository: ghcr.io/goauthentik/server
-        tag: 2025.12.4
+        tag: 2026.2.1
       fullnameOverride: authentik
       volumes:
         - name: tmp
