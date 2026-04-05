@@ -661,7 +661,6 @@ ui:
   time_format: browser
   date_style: short
   time_style: medium
-  strftime_fmt: '%Y/%m/%d %H:%M'
 
 telemetry:
   network_interfaces:
