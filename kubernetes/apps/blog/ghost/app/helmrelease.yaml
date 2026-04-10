@@ -45,29 +45,21 @@ spec:
         controller: ghost
         ports:
           http:
-            port: 2368
-    ingress:
-      main:
-        enabled: true
-        className: external
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
-          nginx.ingress.kubernetes.io/proxy-body-size: 2G
-          hajimari.io/enable: "true"
-          hajimari.io/appName: "Journal (Ghost)"
-          hajimari.io/info: "Blogging software"
-          hajimari.io/icon: "image-multiple"
-        hosts:
-          - host: &host magic.${SECRET_DOMAIN}
-            paths:
-              - path: "/"
-                pathType: "Prefix"
-                service:
-                  identifier: main
-                  port: http
-        tls:
-          - hosts:
-              - *host
+            port: &port 2368
+
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.${SECRET_DOMAIN}"
+        parentRefs:
+          - name: envoy-external
+            namespace: network
+
+        rules:
+          - backendRefs:
+              - name: ghost
+                port: *port
+
     persistence:
       content:
         enabled: true
