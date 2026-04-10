@@ -19,6 +19,8 @@ spec:
     substituteFrom:
       - name: cluster-secrets
         kind: Secret
+      - kind: Secret
+        name: capacitor-secret
     substitute:
       APP: *app
   prune: true
