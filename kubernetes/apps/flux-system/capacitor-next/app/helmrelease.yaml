@@ -1,82 +1,18 @@
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: capacitor-next
 spec:
-  interval: 1h
+  interval: 15m
+  timeout: 1m
   chartRef:
     kind: OCIRepository
-    name: capacitor-next
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
+    name: capacitor-next-helm
   values:
-    controllers:
-      capacitor:
-        containers:
-          app:
-            image:
-              repository: ghcr.io/gimlet-io/capacitor-next
-              tag: 0.14.0
-            env:
-              LICENSE_KEY: "${CAPACITOR_LICENSE}"
-              ##
-              ## ClusterAdmin access without authentiaction
-              ## For your home lab, local development or testing.
-              ## Read https://gimlet.io/capacitor-next/docs/#authorization for more information.
-              ##
-              AUTH: noauth
-              AUTH_DEBUG: "false" #logs impersonation headers
-              IMPERSONATE_SA_RULES: "noauth=flux-system:capacitor-next-preset-clusteradmin"
-              SESSION_HASH_KEY: "${SECRET_HASH_KEY}"
-              SESSION_BLOCK_KEY: "${SECRET_BLOCK_KEY}"
-              # Read https://gimlet.io/capacitor-next/docs/#multi-cluster
-              registry.yaml: |
-                clusters:
-                - id: in-cluster
-                  name: In-cluster
-                  apiServerURL: https://kubernetes.default.svc
-                  certificateAuthorityFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-                  serviceAccount:
-                    tokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
-            resources:
-              requests:
-                cpu: 50m
-                memory: 100Mi
-                ephemeral-storage: 1Gi
-              limits:
-                memory: 200Mi
-                ephemeral-storage: 2Gi
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: [ALL] }
-    serviceAccount:
-      capacitor-next: {}
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 65534
-        runAsGroup: 65534
-    service:
-      app:
-        ports:
-          http:
-            port: &port 8080
-    route:
-      app:
-        hostnames: ["gitops.${SECRET_DOMAIN}"]
-        parentRefs:
-          - name: envoy-internal
-            namespace: network
-            sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
+    env:
+      AUTH: noauth
+      AUTH_DEBUG: "true" #logs impersonation headers
+      IMPERSONATE_SA_RULES: "noauth=flux-system:capacitor-next-preset-clusteradmin"
+    existingSecret:
+      name: capacitor-next
