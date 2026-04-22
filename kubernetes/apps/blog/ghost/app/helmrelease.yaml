@@ -31,7 +31,7 @@ spec:
           app:
             image:
               repository: ghost
-              tag: 6.27.0
+              tag: 6.32.0
             env:
               TZ: ${TIMEZONE}
               url: "https://magic.${SECRET_DOMAIN}"
