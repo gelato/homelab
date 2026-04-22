@@ -69,11 +69,12 @@ spec:
             resources:
               claims:
                 - name: intel-gpu
-              # requests:
-                # cpu: 2821m
-                # memory: 9617M
-              # limits:
-              #   memory: 17G
+              requests:
+                cpu: 2044m
+                memory: 3678Mi
+              limits:
+                cpu: 4720m
+                memory: 7200Mi
 
         pod:
           # annotations:
