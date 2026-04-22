@@ -1,14 +1,11 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/ocirepository_v1.json
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: capacitor-next
+  name: capacitor-next-helm
 spec:
-  interval: 15m
-  layerSelector:
-    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
-    operation: copy
+  interval: 24h
+  url: oci://ghcr.io/gimlet-io/charts/capacitor-next
   ref:
-    tag: 4.6.2
-  url: oci://ghcr.io/bjw-s-labs/helm/app-template
+    # semver: ">= 0.12.0-0" # Adding a `-0` suffix to the semver range will include prerelease versions.
+    semver: ">= 0.14.0"

@@ -6,7 +6,7 @@ metadata:
   name: postgres16
 spec:
   instances: 1
-  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16.4
+  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:16-1.1.1
   # imageName: ghcr.io/cloudnative-pg/postgresql:16.1-17
   primaryUpdateStrategy: unsupervised
   storage:
@@ -22,7 +22,8 @@ spec:
       shared_buffers: 512MB
     enableAlterSystem: true
     shared_preload_libraries:
-      - "vectors.so"
+      - "pg_stat_statements"
+      - "vchord.so"
   resources:
     requests:
       cpu: 100m
