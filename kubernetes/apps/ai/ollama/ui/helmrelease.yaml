@@ -33,7 +33,7 @@ spec:
               tag: main
             env:
               OLLAMA_BASE_URL: http://ollama.ai.svc:11434/api
-              WEBUI_AUTH: False
+              # WEBUI_AUTH: False
             resources:
               requests:
                 cpu: 200m
