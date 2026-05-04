@@ -73,6 +73,7 @@ spec:
             - name: init-mqtt
               mountPath: /init-mqtt.py
               subPath: init-mqtt.py
+      bootstrapAPIKeysSecretName: emqx-secret
       volumeClaimTemplates:
         storageClassName: longhorn-fast
         resources:
