@@ -85,9 +85,8 @@ spec:
           configMap:
             name: emqx-init-mqtt-configmap
         - name: init-user
-          mountPath: /opt/init-user.json
-          subPath: init-user.json
-          readOnly: true
+          secret:
+            secretName: emqx-init-user-secret
         - name: emqx-tls
           secret:
             secretName: emqx-tls
