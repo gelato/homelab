@@ -39,6 +39,8 @@ spec:
             name = "bcrypt"
         }
         user_id_type = "username"
+        bootstrap_file = "/opt/init-user.json"
+        bootstrap_type = "plain"
       }
       authorization {
         sources = [
@@ -73,7 +75,6 @@ spec:
             - name: init-mqtt
               mountPath: /init-mqtt.py
               subPath: init-mqtt.py
-      bootstrapAPIKeysSecretName: emqx-secret
       volumeClaimTemplates:
         storageClassName: longhorn-fast
         resources:
