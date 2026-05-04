@@ -6,8 +6,6 @@ metadata:
   name: emqx
 spec:
   image: public.ecr.aws/emqx/emqx:5.8.9
-  nodeEvacuationStrategy:
-    enable: false
   config:
     data: |
       listeners.ssl.default {
@@ -54,14 +52,14 @@ spec:
       mqtt {
         max_packet_size="2MB"
       }
-  bootstrapAPIKeys:
-    - secretRef:
-        key:
-          secretName: emqx-secret
-          secretKey: X_EMQX_APIKEY_KEY
-        secret:
-          secretName: emqx-secret
-          secretKey: X_EMQX_APIKEY_SECRET
+  # bootstrapAPIKeys:
+  #   - secretRef:
+  #       key:
+  #         secretName: emqx-secret
+  #         secretKey: X_EMQX_APIKEY_KEY
+  #       secret:
+  #         secretName: emqx-secret
+  #         secretKey: X_EMQX_APIKEY_SECRET
   coreTemplate:
     metadata:
       annotations:
