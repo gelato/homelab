@@ -690,4 +690,4 @@ camera_groups:
     order: 0
 detect:
   enabled: true
-version: 0.16-0
+version: 0.17-0
