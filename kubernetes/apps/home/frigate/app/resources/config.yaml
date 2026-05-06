@@ -685,6 +685,7 @@ camera_groups:
       - street
       - door
       - middle
+      - garden
     icon: LuCar
     order: 0
 detect:
