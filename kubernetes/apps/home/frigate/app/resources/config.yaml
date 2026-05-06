@@ -62,23 +62,12 @@ ffmpeg:
 record:
   enabled: true
   sync_recordings: true
-  retain:
-    days: 3
-    mode: all
+  continuous:
+    days: 5
   preview:
-    quality: very_high
-  alerts:
-    pre_capture: 5
-    post_capture: 5
-    retain:
-      days: 3
-      mode: active_objects
-  detections:
-    pre_capture: 5
-    post_capture: 5
-    retain:
-      days: 3
-      mode: active_objects
+    # Optional: Quality of recording preview (default: shown below).
+    # Options are: very_low, low, medium, high, very_high
+    quality: medium
 
 snapshots:
   enabled: true
@@ -94,7 +83,7 @@ snapshots:
   quality: 90
 
 semantic_search:
-  enabled: true
+  enabled: False
 
 # genai:
 #   # Optional: Enable AI description generation (default: shown below)
