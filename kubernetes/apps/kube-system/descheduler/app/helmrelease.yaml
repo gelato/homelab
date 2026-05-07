@@ -37,6 +37,7 @@ spec:
                 evictFailedBarePods: true
                 evictLocalStoragePods: true
                 evictSystemCriticalPods: true
+                nodeFit: true
             - name: RemoveFailedPods
               args:
                 reasons:
@@ -56,6 +57,10 @@ spec:
                   - requiredDuringSchedulingIgnoredDuringExecution
             - name: RemovePodsViolatingNodeTaints
             - name: RemovePodsViolatingTopologySpreadConstraint
+              args:
+                constraints:
+                  - DoNotSchedule
+                  - ScheduleAnyway
             - name: LowNodeUtilization
               args:
                 thresholds:
@@ -64,7 +69,7 @@ spec:
                   pods: 90
             - name: RemovePodsHavingTooManyRestarts
               args:
-                podRestartThreshold: 100
+                podRestartThreshold: 5
                 includingInitContainers: true
           plugins:
             balance:
