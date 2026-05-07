@@ -19,10 +19,9 @@ spec:
       dynamicPath: /var/cdi/dynamic
 
     kubeletPlugin:
-      podAnnotations: {}
-      nodeSelector: {} # ignored when .Values.nodeFeatureRules.enabled or .Values.nfd.enabled
-      tolerations: {}
-      affinity: {}
+      privileged: true
+      healthMonitoring:
+        enabled: false
 
     nodeFeatureRules:
       enabled: true
