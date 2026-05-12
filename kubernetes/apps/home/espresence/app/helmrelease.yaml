@@ -30,14 +30,14 @@ spec:
           init-config:
             image:
               repository: espresense/espresense-companion
-              tag: beta@sha256:ce57532f61643ad4929e5be05545a2aa17eac75d6b50b43e1675987717ea2c03
+              tag: beta@sha256:a113f38bf7b6c31dec238ad756e8964a5c5e6da59678b5ab9348b7777627d433
             command: ["/bin/sh", "-c"]
             args: ["cp /tmp/config/config.yaml /config/espresense/config.yaml && chmod 0700 /config/espresense/config.yaml && mkdir -p /config/espresense/.storage"]
         containers:
           main:
             image:
               repository: espresense/espresense-companion
-              tag: beta@sha256:ce57532f61643ad4929e5be05545a2aa17eac75d6b50b43e1675987717ea2c03
+              tag: beta@sha256:a113f38bf7b6c31dec238ad756e8964a5c5e6da59678b5ab9348b7777627d433
             env:
               TZ: ${TIMEZONE}
             securityContext:
