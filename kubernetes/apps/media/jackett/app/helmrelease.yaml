@@ -20,7 +20,7 @@ spec:
           *app :
             image:
               repository: linuxserver/jackett
-              tag: "0.24.1859"
+              tag: "0.24.2031"
             env:
               PUID: "568"
               PGID: "568"
