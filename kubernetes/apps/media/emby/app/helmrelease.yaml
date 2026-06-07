@@ -33,7 +33,7 @@ spec:
           main:
             image:
               repository: xinjiawei1/emby_unlockd
-              tag: stable@sha256:7b8d53e2d8ae845f9fcd907d233f882778867e6384edf2b822d6382dce602238
+              tag: stable@sha256:d482d1f35281238a4d70150b02e257c5f6f086b0bdb3592e248590a2ced58470
             env:
               NVIDIA_VISIBLE_DEVICES: all
               NVIDIA_DRIVER_CAPABILITIES: all
