@@ -7,7 +7,7 @@ metadata:
 data:
   DB_PORT: "5432"
   NODE_ENV: "production"
-  REDIS_HOSTNAME: "redis-sentinel-headless.database.svc.cluster.local"
+  REDIS_HOSTNAME: "dragonfly.database.svc.cluster.local"
   REDIS_PORT: "6379"
   IMMICH_SERVER_URL: http://immich-server.media.svc.cluster.local:3001
   IMMICH_MACHINE_LEARNING_URL: http://immich-machine-learning.media.svc.cluster.local:3003
