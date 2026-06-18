@@ -21,7 +21,7 @@ spec:
     image:
       # FIXME check the app name
       # repository: ghcr.io/weaveworks/wego-app
-      repository: ghcr.io/gkalian/wego-app:v0.39.1-rc.1
+      repository: ghcr.io/gkalian/wego-app
       pullPolicy: IfNotPresent
       tag: "v0.39.1-rc.1@sha256:1f2043b807a67936ba054dd61f200f81df2bd8557139b07f85b4738144a481dc"
     adminUser:
