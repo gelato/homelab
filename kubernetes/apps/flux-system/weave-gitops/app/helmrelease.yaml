@@ -20,9 +20,10 @@ spec:
     replicaCount: 1
     image:
       # FIXME check the app name
-      repository: ghcr.io/weaveworks/wego-app
+      # repository: ghcr.io/weaveworks/wego-app
+      repository: artifactory.devops.telekom.de/ghcr.io.docker/gkalian/wego-app
       pullPolicy: IfNotPresent
-      # tag: "v0.39.1-rc.1"
+      tag: "v0.39.1-rc.1"
     adminUser:
       create: true
       username: admin
