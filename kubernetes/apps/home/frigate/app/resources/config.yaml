@@ -9,10 +9,10 @@ mqtt:
   password: '{FRIGATE_MQTT_PASSWORD}'
   stats_interval: 30
 
-# detectors:
-#   coral:
-#     type: edgetpu
-#     device: usb
+detectors:
+  coral:
+    type: edgetpu
+    device: usb
 
 database:
   path: /config/frigate.db
