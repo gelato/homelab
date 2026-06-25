@@ -53,7 +53,7 @@ objects:
       threshold: 0.8
 
 ffmpeg:
-  hwaccel_args: preset-nvidia
+  hwaccel_args: preset-nvidia-h264
   input_args: preset-rtsp-restream
   # hwaccel_args: preset-intel-qsv-h264
   # input_args: preset-rtsp-restream
