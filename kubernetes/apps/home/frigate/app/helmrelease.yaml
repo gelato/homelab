@@ -22,6 +22,7 @@ spec:
   values:
     defaultPodOptions:
       hostNetwork: false
+      runtimeClassName: nvidia
     controllers:
       main:
         annotations:
@@ -30,7 +31,7 @@ spec:
           init-config:
             image:
               repository: ghcr.io/blakeblackshear/frigate
-              tag: 0.17.1@sha256:1724960349dad0bd2ae8ec884171a6fd5755a4dc242a0e66cadbda9c0e85c99b
+              tag: 0.17.1-tensorrt@sha256:a8d21fae3d49aea25384d56eec20a0414e24bae91b17d5f9e8f9b2f89d574a3f
             command: ["/bin/sh", "-c"]
             args: ["cp /config/config.yaml-mine /config/config.yaml && chmod 0760 /config/config.yaml"]
         containers:
@@ -38,7 +39,7 @@ spec:
 
             image:
               repository: ghcr.io/blakeblackshear/frigate
-              tag: 0.17.1@sha256:1724960349dad0bd2ae8ec884171a6fd5755a4dc242a0e66cadbda9c0e85c99b
+              tag: 0.17.1-tensorrt@sha256:a8d21fae3d49aea25384d56eec20a0414e24bae91b17d5f9e8f9b2f89d574a3f
 
             env:
               TZ: ${TIMEZONE}
@@ -67,14 +68,15 @@ spec:
               privileged: true
 
             resources:
-              claims:
-                - name: intel-gpu
+              # claims:
+              #   - name: intel-gpu
               requests:
                 cpu: 2044m
                 memory: 3678Mi
               limits:
                 cpu: 4720m
-                memory: 7200Mi
+                # memory: 7112Mi
+                nvidia.com/gpu: 1
 
         pod:
           # annotations:
@@ -85,11 +87,11 @@ spec:
           #       "ips": ["192.168.108.55/24"],
           #       "mac": "aa:42:2c:ac:3a:aa"
           #     }]
-          resourceClaims:
-            - name: intel-gpu
-              resourceClaimTemplateName: frigate-gpu
-          nodeSelector:
-            google.feature.node.kubernetes.io/coral: "true"
+          # resourceClaims:
+          #   - name: intel-gpu
+          #     resourceClaimTemplateName: frigate-gpu
+          # nodeSelector:
+          #   google.feature.node.kubernetes.io/coral: "true"
 
     service:
       frigate:
