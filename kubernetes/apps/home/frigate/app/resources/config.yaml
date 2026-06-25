@@ -57,9 +57,9 @@ ffmpeg:
   input_args: preset-rtsp-restream
   # hwaccel_args: preset-intel-qsv-h264
   # input_args: preset-rtsp-restream
-  # output_args:
-  #   detect: -threads 2 -f rawvideo -pix_fmt yuv420p
-  #   record: preset-record-generic
+  output_args:
+    detect: -threads 2 -f rawvideo -pix_fmt yuv420p
+    record: preset-record-generic
 
 record:
   enabled: true
