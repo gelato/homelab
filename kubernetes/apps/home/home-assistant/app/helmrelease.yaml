@@ -28,6 +28,8 @@ spec:
       hostNetwork: true
     controllers:
       main:
+        podDisruptionBudget:
+          minAvailable: 1
         annotations:
           reloader.stakater.com/auto: "true"
         containers:

@@ -18,3 +18,4 @@ resources:
   - ./intel-gpu-resource-driver/ks.yaml
   - ./reflector/ks.yaml
   - ./descheduler/ks.yaml
+  - ./priorityclasses/ks.yaml
