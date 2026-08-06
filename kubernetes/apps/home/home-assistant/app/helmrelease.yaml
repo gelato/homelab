@@ -26,6 +26,7 @@ spec:
   values:
     defaultPodOptions:
       hostNetwork: true
+      priorityClassName: emergency-critical
     controllers:
       main:
         podDisruptionBudget:

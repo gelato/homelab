@@ -22,6 +22,8 @@ spec:
     - name: longhorn
       namespace: storage
   values:
+    defaultPodOptions:
+      priorityClassName: emergency-critical
     controllers:
       main:
         annotations:

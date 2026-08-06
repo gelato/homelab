@@ -21,7 +21,7 @@ spec:
     keepHistory: false
   values:
     defaultPodOptions:
-      runtimeClassName: nvidia
+      priorityClassName: emergency-critical
     controllers:
       silero:
         annotations:
@@ -46,7 +46,6 @@ spec:
             resources:
               limits:
                 memory: 6Gi
-                nvidia.com/gpu: 1
               requests:
                 cpu: 100m
                 memory: 500Mi
