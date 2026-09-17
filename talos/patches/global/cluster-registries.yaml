@@ -7,25 +7,25 @@ machine:
     mirrors:
       docker.io:
         endpoints:
-          - https://harbor.casa/v2/local-dreg
+          - https://harbor.home.arpa/v2/local-dreg
         overridePath: true
       ghcr.io:
         endpoints:
-          - https://harbor.casa/v2/local-github
+          - https://harbor.home.arpa/v2/local-github
         overridePath: true
       gcr.io:
         endpoints:
-          - https://harbor.casa/v2/local-gcr
+          - https://harbor.home.arpa/v2/local-gcr
         overridePath: true
       registry.k8s.io:
         endpoints:
-          - https://harbor.casa/v2/local-k8s
+          - https://harbor.home.arpa/v2/local-k8s
         overridePath: true
       quay.io:
         endpoints:
-          - https://harbor.casa/v2/local-quay
+          - https://harbor.home.arpa/v2/local-quay
         overridePath: true
       hub.docker.com:
         endpoints:
-          - https://harbor.casa/v2/local-dhub
+          - https://harbor.home.arpa/v2/local-dhub
         overridePath: true
