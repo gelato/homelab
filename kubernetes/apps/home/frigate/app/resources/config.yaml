@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://frigate.skynerv.com/api/config/schema.json
 mqtt:
   enabled: true
-  host: emqx-listeners
+  host: 192.168.104.200
   port: 1883
   topic_prefix: frigate
   client_id: frigate
