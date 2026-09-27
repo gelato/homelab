@@ -59,7 +59,7 @@ ffmpeg:
   # input_args: preset-rtsp-restream
   output_args:
     detect: -threads 2 -f rawvideo -pix_fmt yuv420p
-    record: preset-record-generic
+    record: preset-record-generic-audio-aac
 
 record:
   enabled: true
@@ -171,7 +171,7 @@ cameras:
     live:
       streams:
         main_stream: gates_hq
-        sub_stream: gates_hq
+        sub_stream: gates_lq
     webui_url: ''
     motion:
       mask:
@@ -250,7 +250,7 @@ cameras:
     live:
       streams:
         main_stream: door_hq
-        sub_stream: door_hq
+        sub_stream: door_lq
     webui_url: https://192.168.108.104/
     motion:
       mask:
@@ -335,7 +335,7 @@ cameras:
     live:
       streams:
         main_stream: dvor_gates_hq
-        sub_stream: dvor_gates_hq
+        sub_stream: dvor_gates_lq
     webui_url: https://192.168.108.210/
     motion:
       mask:
@@ -429,25 +429,25 @@ cameras:
     motion:
       mask:
         - 0.049,1,0.001,0.996,0.001,0.001,0.996,0.003,0.999,0.996,0.648,1,0.62,0.849,0.872,0.761,0.868,0.61,0.581,0.635,0.578,0.463,0.532,0.47,0.517,0.51,0.526,0.698,0.359,0.718,0.215,0.738,0.057,0.928
-      threshold: 55
-      contour_area: 40
+      threshold: 30
+      contour_area: 10
     zones:
       kacheli:
         coordinates: 0.619,0.838,0.581,0.642,0.865,0.619,0.868,0.756
-        inertia: 5
-        loitering_time: 3
+        inertia: 2
+        loitering_time: 0
         objects:
           - person
       dom2_tropinka:
         coordinates: 0.528,0.607,0.567,0.609,0.643,1,0.55,1
-        inertia: 5
-        loitering_time: 2
+        inertia: 2
+        loitering_time: 0
         objects:
           - person
       lavka:
         coordinates: 0.218,0.744,0.528,0.704,0.542,1,0.053,1,0.064,0.931
-        inertia: 5
-        loitering_time: 2
+        inertia: 2
+        loitering_time: 0
         objects:
           - person
     review:
@@ -458,6 +458,11 @@ cameras:
           - kacheli
           - dom2_tropinka
           - lavka
+    objects:
+      filters:
+        person:
+          min_score: 0.5
+          threshold: 0.7
     mqtt:
       enabled: true
       timestamp: false
@@ -586,6 +591,11 @@ cameras:
           - near_doghouse
           - garden_entrance
           - doghouse
+    objects:
+      filters:
+        person:
+          min_score: 0.5
+          threshold: 0.7
     webui_url: ''
     mqtt:
       enabled: true
@@ -637,6 +647,11 @@ cameras:
           - dog
         required_zones:
           - garden_zone
+    objects:
+      filters:
+        person:
+          min_score: 0.5
+          threshold: 0.7
     webui_url: ''
     mqtt:
       enabled: true
