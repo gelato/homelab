@@ -221,6 +221,11 @@ cameras:
           - entryway
           - guests
           - inside_gates
+    objects:
+      filters:
+        person:
+          min_score: 0.5
+          threshold: 0.7
     mqtt:
       enabled: true
       timestamp: true
@@ -395,6 +400,11 @@ cameras:
           - in_the_garden
           - driveway
           - driveway_2
+    objects:
+      filters:
+        person:
+          min_score: 0.5
+          threshold: 0.7
     mqtt:
       enabled: true
       timestamp: false
