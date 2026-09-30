@@ -62,16 +62,15 @@ spec:
                   failureThreshold: 3
               readiness: *probes
               startup:
-                startup:
-                  enabled: true
-                  custom: true
-                  spec:
-                    httpGet:
-                      path: /api/version
-                      port: 5000
-                    periodSeconds: 10
-                    timeoutSeconds: 3
-                    failureThreshold: 30
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/version
+                    port: 5000
+                  periodSeconds: 10
+                  timeoutSeconds: 3
+                  failureThreshold: 30
 
 
             securityContext:
