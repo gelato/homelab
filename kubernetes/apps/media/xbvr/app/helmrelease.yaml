@@ -19,7 +19,7 @@ spec:
           main:
             image:
               repository: ghcr.io/xbapps/xbvr
-              tag: 0.4.39
+              tag: 0.4.40
             resources:
               requests:
                 cpu: 15m
