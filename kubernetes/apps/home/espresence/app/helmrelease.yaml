@@ -55,7 +55,7 @@ spec:
           busybox:
             image:
               repository: amd64/busybox
-              tag: 1.38@sha256:c2952e1a85aa73d1546c1bccae438903ac9f055ffd20d3ea6b2d424d3bbea877
+              tag: 1.38@sha256:74f051e325bb26f6a8781ee08fa97a5950aae8af6b9b809ed79eea2749c22f3c
             command: ["/bin/sh", "-c"]
             args: ["mkdir -p /config/espresense && sleep infinity"]
             env:
