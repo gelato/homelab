@@ -30,14 +30,14 @@ spec:
           init-config:
             image:
               repository: docker.io/library/eclipse-mosquitto
-              tag: 2.0.22@sha256:09b62ff32c2e7b64d4b431b9a89236073289b68db273de2b089edeb9b0d92b5c
+              tag: 2.0.22@sha256:81a6193ae693942a3231cd3ac52875b02b7e3a19da671b2fb4b55cc874c5b279
             command: ["/bin/sh", "-c"]
             args: ["cp /tmp/secret/* /mosquitto/external_config/ && chmod 0700 /mosquitto/external_config/mosquitto_pwd && mosquitto_passwd -U /mosquitto/external_config/mosquitto_pwd && mosquitto_passwd -b /mosquitto/external_config/mosquitto_pwd rusclimate 87fcf5e2e441"]
         containers:
           main:
             image:
               repository: docker.io/library/eclipse-mosquitto
-              tag: 2.0.22@sha256:09b62ff32c2e7b64d4b431b9a89236073289b68db273de2b089edeb9b0d92b5c
+              tag: 2.0.22@sha256:81a6193ae693942a3231cd3ac52875b02b7e3a19da671b2fb4b55cc874c5b279
               # tag: 1.5.11@sha256:a969883d583a7cc3dbb0886d9a2d7ad4f776d792b01df9f0bef86a68dca9d08d
             env:
               TZ: ${TIMEZONE}
