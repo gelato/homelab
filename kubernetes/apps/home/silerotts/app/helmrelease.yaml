@@ -30,7 +30,7 @@ spec:
           app:
             image:
               repository: navatusein/silero-tts-service
-              tag: 3.0.1
+              tag: 3.1.0
             env:
               NUMBER_OF_THREADS: 6
               LANGUAGE: ru
