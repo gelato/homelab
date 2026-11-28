@@ -39,7 +39,7 @@ spec:
     image:
       repository: ollama/ollama
       pullPolicy: IfNotPresent
-      tag: "0.40.17"
+      tag: "0.40.19"
 
     ollama:
       models:
